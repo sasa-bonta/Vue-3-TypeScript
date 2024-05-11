@@ -5,10 +5,9 @@ import org.example.fancy_project.classes.Vehicle;
 
 @Embeddable
 public interface VehicleState {
-    void rent(Vehicle vehicle);
+    void startRent(Vehicle vehicle);
 
-    void returnVehicle(Vehicle vehicle);
+    void endRent(Vehicle vehicle);
 
     boolean isAvailable();
-
 }

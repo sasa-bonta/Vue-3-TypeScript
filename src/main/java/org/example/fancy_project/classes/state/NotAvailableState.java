@@ -4,12 +4,12 @@ import org.example.fancy_project.classes.Vehicle;
 
 public class NotAvailableState implements VehicleState {
     @Override
-    public void rent(Vehicle vehicle) {
+    public void startRent(Vehicle vehicle) {
 
     }
 
     @Override
-    public void returnVehicle(Vehicle vehicle) {
+    public void endRent(Vehicle vehicle) {
         vehicle.setState(new AvailableState());
     }
 
@@ -18,4 +18,8 @@ public class NotAvailableState implements VehicleState {
         return false;
     }
 
+    @Override
+    public String toString() {
+        return "not available";
+    }
 }

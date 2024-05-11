@@ -1,12 +1,11 @@
 package org.example.fancy_project.classes;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.MappedSuperclass;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.example.fancy_project.classes.state.AvailableState;
 import org.example.fancy_project.classes.state.VehicleState;
+import org.example.fancy_project.classes.state.VehicleStateConverter;
 
 @Getter
 @MappedSuperclass
@@ -18,7 +17,7 @@ public abstract class Vehicle {
     private String model;
     private Integer mileage;
     @Setter
-    @Enumerated(EnumType.STRING)
+    @Convert(converter = VehicleStateConverter.class)
     private VehicleState state;
     private String engine;
     private String fuel;
@@ -28,14 +27,14 @@ public abstract class Vehicle {
     private boolean rent;
     private Integer price;
 
-    public Vehicle(String vin, Integer year, String brand, String model, Integer mileage, VehicleState state,
+    public Vehicle(String vin, Integer year, String brand, String model, Integer mileage,
                    String engine, String fuel, Integer power, String type, String photo, boolean rent, Integer price) {
         this.vin = vin;
         this.year = year;
         this.brand = brand;
         this.model = model;
         this.mileage = mileage;
-        this.state = state;
+        this.state = new AvailableState();
         this.engine = engine;
         this.fuel = fuel;
         this.power = power;
@@ -46,15 +45,15 @@ public abstract class Vehicle {
     }
 
     public Vehicle() {
-
+        this.state = new AvailableState();
     }
 
-    public void rent() {
-        state.rent(this);
+    public void startRent() {
+        state.startRent(this);
     }
 
-    public void returnVehicle() {
-        state.returnVehicle(this);
+    public void endRent() {
+        state.endRent(this);
     }
 
     public boolean isAvailable() {

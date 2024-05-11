@@ -1,4 +1,4 @@
-package org.example.fancy_project.controller;
+package org.example.fancy_project.controller.bike;
 
 import org.example.fancy_project.classes.bike.Bike;
 import org.example.fancy_project.service.bike.BikeService;
