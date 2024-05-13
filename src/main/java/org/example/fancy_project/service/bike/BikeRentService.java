@@ -8,17 +8,15 @@ import org.example.fancy_project.classes.state.NotAvailableState;
 import org.example.fancy_project.dao.BikeDao;
 import org.example.fancy_project.dao.BikeRentDao;
 import org.example.fancy_project.service.RentService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class BikeRentService extends RentService<BikeRent> {
-    final BikeRentDao bikeRentDao;
-    final BikeDao bikeDao;
-
-    public BikeRentService(BikeRentDao bikeRentDao, BikeDao bikeDao) {
-        this.bikeRentDao = bikeRentDao;
-        this.bikeDao = bikeDao;
-    }
+    @Autowired
+    BikeRentDao bikeRentDao;
+    @Autowired
+    BikeDao bikeDao;
 
     public BikeRent createRent(BikeRent bikeRent) throws ActionException {
         bikeRent.setStartDate(getCurrentDateTimeString());

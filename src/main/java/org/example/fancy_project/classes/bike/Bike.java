@@ -1,6 +1,7 @@
 package org.example.fancy_project.classes.bike;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import lombok.Data;
 import org.example.fancy_project.classes.Vehicle;
 import org.example.fancy_project.classes.state.VehicleState;
@@ -9,9 +10,6 @@ import org.example.fancy_project.classes.state.VehicleState;
 @Entity
 @Table(name = "bike")
 public class Bike extends Vehicle {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
     private boolean streetLegal;
     private boolean backSeat;
 

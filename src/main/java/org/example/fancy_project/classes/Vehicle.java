@@ -3,13 +3,15 @@ package org.example.fancy_project.classes;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import org.example.fancy_project.classes.state.AvailableState;
 import org.example.fancy_project.classes.state.VehicleState;
 import org.example.fancy_project.classes.state.VehicleStateConverter;
 
 @Getter
 @MappedSuperclass
 public abstract class Vehicle {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    protected Integer id;
     @Column(unique = true)
     private String vin;
     private Integer year;
