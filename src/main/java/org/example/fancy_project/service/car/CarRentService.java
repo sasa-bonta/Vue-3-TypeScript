@@ -25,14 +25,14 @@ public class CarRentService extends RentService<CarRent> {
         Car fetchedCar = carDao.findById(carRent.getCar().getId())
                 .orElseThrow(() -> new IllegalArgumentException("CarRent with ID " + carRent.getCar().getId() + " not found."));
 
-        if (fetchedCar.getState().isAvailable()) {
+        if (fetchedCar.getState().isAvailable() && !fetchedCar.isDeleted()) {
             fetchedCar.setState(new NotAvailableState());
             carRent.setCar(fetchedCar);
 
             return carRentDao.save(carRent);
         }
 
-        throw new ActionException("Car not available");
+        throw new ActionException("Car not available or deleted");
     }
 
     public CarRent endRent(Integer id) throws ActionException {

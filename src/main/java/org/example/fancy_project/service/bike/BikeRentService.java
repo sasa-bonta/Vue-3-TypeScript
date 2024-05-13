@@ -25,14 +25,14 @@ public class BikeRentService extends RentService<BikeRent> {
         Bike fetchedBike = bikeDao.findById(bikeRent.getBike().getId())
                 .orElseThrow(() -> new IllegalArgumentException("BikeRent with ID " + bikeRent.getBike().getId() + " not found."));
 
-        if (fetchedBike.getState().isAvailable()) {
+        if (fetchedBike.getState().isAvailable() && !fetchedBike.isDeleted()) {
             fetchedBike.setState(new NotAvailableState());
             bikeRent.setBike(fetchedBike);
 
             return bikeRentDao.save(bikeRent);
         }
 
-        throw new ActionException("Bike not available");
+        throw new ActionException("Bike not available or deleted");
     }
 
     public BikeRent endRent(Integer id) throws ActionException {

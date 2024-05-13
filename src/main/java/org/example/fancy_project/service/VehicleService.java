@@ -24,9 +24,11 @@ public abstract class VehicleService<T extends Vehicle> {
     }
 
     public void delete(Integer id) {
-        Vehicle fetchedVehicle = vehicleDao.findById(id)
+        T fetchedVehicle = vehicleDao.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Vehicle with ID " + id + " not found."));
 
         fetchedVehicle.setDeleted(true);
+
+        vehicleDao.save(fetchedVehicle);
     }
 }
