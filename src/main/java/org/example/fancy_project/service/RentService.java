@@ -20,7 +20,7 @@ public abstract class RentService<T extends Rent> {
         return rentDao.findAll();
     }
 
-    public abstract T createRent(T rent);
+    public abstract T createRent(T rent) throws ActionException;
 
     public abstract T endRent(Integer id) throws ActionException;
 

@@ -21,7 +21,7 @@ public abstract class RentController<T extends Rent> {
     }
 
     @RequestMapping(value = "createRent", method = RequestMethod.POST)
-    public T createRent(@RequestBody T rent){
+    public T createRent(@RequestBody T rent) throws ActionException {
         return rentService.createRent(rent);
     }
 
