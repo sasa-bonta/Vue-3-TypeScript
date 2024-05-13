@@ -1,5 +1,6 @@
 package org.example.fancy_project.controller;
 
+import ch.qos.logback.core.joran.spi.ActionException;
 import org.example.fancy_project.classes.Rent;
 import org.example.fancy_project.service.RentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,7 @@ public abstract class RentController<T extends Rent> {
     }
 
     @RequestMapping(value = "endRent/{rentId}", method = RequestMethod.PUT)
-    public T endRent(@PathVariable Integer rentId){
+    public T endRent(@PathVariable Integer rentId) throws ActionException {
         return rentService.endRent(rentId);
     }
 

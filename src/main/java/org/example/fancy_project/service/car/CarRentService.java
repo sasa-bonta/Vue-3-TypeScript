@@ -1,14 +1,12 @@
 package org.example.fancy_project.service.car;
 
+import ch.qos.logback.core.joran.spi.ActionException;
 import org.example.fancy_project.classes.car.Car;
 import org.example.fancy_project.classes.car.CarRent;
 import org.example.fancy_project.dao.CarDao;
 import org.example.fancy_project.dao.CarRentDao;
 import org.example.fancy_project.service.RentService;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.Optional;
 
 @Service
 public class CarRentService extends RentService<CarRent> {
@@ -20,11 +18,7 @@ public class CarRentService extends RentService<CarRent> {
         this.carDao = carDao;
     }
 
-    public List<CarRent> getAllRents() {
-        return carRentDao.findAll();
-    }
-
-    public CarRent createRent(CarRent carRent){
+    public CarRent createRent(CarRent carRent) {
         carRent.setStartDate(getCurrentDateTimeString());
         carRent.setFinishDate(null);
 
@@ -35,20 +29,17 @@ public class CarRentService extends RentService<CarRent> {
         return carRentDao.save(carRent);
     }
 
-    public CarRent endRent(Integer id) {
-        Optional<CarRent> optionalRent = carRentDao.findById(id);
+    public CarRent endRent(Integer id) throws ActionException {
+        CarRent fetchedRent = carRentDao.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("CarRent with ID " + id + " not found."));
 
-        if (optionalRent.isPresent()) {
-            CarRent fetchedRent = optionalRent.get();
+        if (fetchedRent.getFinishDate() != null) {
             fetchedRent.setFinishDate(getCurrentDateTimeString());
             carRentDao.save(fetchedRent);
 
             return fetchedRent;
         } else {
-            throw new IllegalArgumentException("CarRent with ID " + id + " not found.");
+            throw new ActionException("CarRent already finished");
         }
-    }
-    public void deleteRent(Integer id) {
-        carRentDao.deleteById(id);
     }
 }

@@ -1,5 +1,6 @@
 package org.example.fancy_project.service;
 
+import ch.qos.logback.core.joran.spi.ActionException;
 import org.example.fancy_project.classes.Rent;
 import org.example.fancy_project.dao.RentDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +9,6 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public abstract class RentService<T extends Rent> {
@@ -20,23 +20,9 @@ public abstract class RentService<T extends Rent> {
         return rentDao.findAll();
     }
 
-    public T createRent(T rent){
-        return rentDao.save(rent);
-    }
+    public abstract T createRent(T rent);
 
-    public T endRent(Integer id) {
-        Optional<T> optionalRent = rentDao.findById(id);
-
-        if (optionalRent.isPresent()) {
-            T fetchedRent = optionalRent.get();
-            fetchedRent.setFinishDate(getCurrentDateTimeString());
-            rentDao.save(fetchedRent);
-
-            return fetchedRent;
-        } else {
-            throw new IllegalArgumentException("Rent with ID " + id + " not found.");
-        }
-    }
+    public abstract T endRent(Integer id) throws ActionException;
 
     public void deleteRent(Integer id) {
         rentDao.deleteById(id);

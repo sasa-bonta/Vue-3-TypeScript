@@ -1,14 +1,12 @@
 package org.example.fancy_project.service.bike;
 
+import ch.qos.logback.core.joran.spi.ActionException;
 import org.example.fancy_project.classes.bike.Bike;
 import org.example.fancy_project.classes.bike.BikeRent;
 import org.example.fancy_project.dao.BikeDao;
 import org.example.fancy_project.dao.BikeRentDao;
 import org.example.fancy_project.service.RentService;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.Optional;
 
 @Service
 public class BikeRentService extends RentService<BikeRent> {
@@ -20,35 +18,29 @@ public class BikeRentService extends RentService<BikeRent> {
         this.bikeDao = bikeDao;
     }
 
-    public List<BikeRent> getAllRents() {
-        return bikeRentDao.findAll();
-    }
-
-    public BikeRent createRent(BikeRent bikeRent){
+    public BikeRent createRent(BikeRent bikeRent) {
         bikeRent.setStartDate(getCurrentDateTimeString());
         bikeRent.setFinishDate(null);
 
         Bike fetchedBike = bikeDao.findById(bikeRent.getBike().getId())
                 .orElseThrow(() -> new IllegalArgumentException("BikeRent with ID " + bikeRent.getBike().getId() + " not found."));
+
         bikeRent.setBike(fetchedBike);
 
         return bikeRentDao.save(bikeRent);
     }
 
-    public BikeRent endRent(Integer id) {
-        Optional<BikeRent> optionalRent = bikeRentDao.findById(id);
+    public BikeRent endRent(Integer id) throws ActionException {
+        BikeRent fetchedRent = bikeRentDao.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("BikeRent with ID " + id + " not found."));
 
-        if (optionalRent.isPresent()) {
-            BikeRent fetchedRent = optionalRent.get();
+        if (fetchedRent.getFinishDate() != null) {
             fetchedRent.setFinishDate(getCurrentDateTimeString());
             bikeRentDao.save(fetchedRent);
 
             return fetchedRent;
         } else {
-            throw new IllegalArgumentException("BikeRent with ID " + id + " not found.");
+            throw new ActionException("BikeRent already finished");
         }
-    }
-    public void deleteRent(Integer id) {
-        bikeRentDao.deleteById(id);
     }
 }
