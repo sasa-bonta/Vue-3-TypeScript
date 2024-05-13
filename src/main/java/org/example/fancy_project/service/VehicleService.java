@@ -19,10 +19,14 @@ public abstract class VehicleService<T extends Vehicle> {
 
     public T create(T vehicle) {
         vehicle.setState(new AvailableState());
+        vehicle.setDeleted(false);
         return vehicleDao.save(vehicle);
     }
 
     public void delete(Integer id) {
-        vehicleDao.deleteById(id);
+        Vehicle fetchedVehicle = vehicleDao.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Vehicle with ID " + id + " not found."));
+
+        fetchedVehicle.setDeleted(true);
     }
 }

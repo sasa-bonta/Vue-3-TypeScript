@@ -28,9 +28,13 @@ public abstract class Vehicle {
     private String photo;
     private boolean rent;
     private Integer price;
+    @Setter
+    @Column(name = "is_deleted")
+    private boolean deleted;
 
     public Vehicle(String vin, Integer year, String brand, String model, Integer mileage, VehicleState state,
-                   String engine, String fuel, Integer power, String type, String photo, boolean rent, Integer price) {
+                   String engine, String fuel, Integer power, String type, String photo, boolean rent,
+                   Integer price, boolean deleted) {
         this.vin = vin;
         this.year = year;
         this.brand = brand;
@@ -44,6 +48,7 @@ public abstract class Vehicle {
         this.photo = photo;
         this.rent = rent;
         this.price = price;
+        this.deleted = deleted;
     }
 
     public Vehicle() {
