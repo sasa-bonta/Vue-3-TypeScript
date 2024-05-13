@@ -1,6 +1,7 @@
 package org.example.fancy_project.service.bike;
 
 import org.example.fancy_project.classes.bike.Bike;
+import org.example.fancy_project.classes.state.AvailableState;
 import org.example.fancy_project.dao.BikeDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,7 @@ public class BikeService {
    }
 
     public Bike createBike(Bike bike){
+        bike.setState(new AvailableState());
         return bikeDao.save(bike);
     }
 

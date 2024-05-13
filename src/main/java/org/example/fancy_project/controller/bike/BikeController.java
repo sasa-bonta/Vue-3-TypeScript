@@ -19,7 +19,7 @@ public class BikeController {
         return bikeService.getAllBikes();
     }
 
-    @RequestMapping(value = "createRent", method = RequestMethod.POST)
+    @RequestMapping(value = "createBike", method = RequestMethod.POST)
     public Bike createBike(@RequestBody Bike bike){
         return bikeService.createBike(bike);
     }

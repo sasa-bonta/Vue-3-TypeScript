@@ -16,10 +16,10 @@ public class Car extends Vehicle {
     private String drivetrain;
     private Integer seats;
 
-    public Car(Integer id, String vin, Integer year, String brand, String model, Integer mileage,
+    public Car(Integer id, String vin, Integer year, String brand, String model, Integer mileage, VehicleState state,
                String engine, String fuel, Integer power, String type, String photo, boolean rent, Integer price,
                String transmission, String drivetrain, Integer seats) {
-        super(vin, year, brand, model, mileage, engine, fuel, power, type, photo, rent, price);
+        super(vin, year, brand, model, mileage, state, engine, fuel, power, type, photo, rent, price);
         this.id = id;
         this.transmission = transmission;
         this.drivetrain = drivetrain;

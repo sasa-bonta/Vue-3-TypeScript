@@ -27,14 +27,14 @@ public abstract class Vehicle {
     private boolean rent;
     private Integer price;
 
-    public Vehicle(String vin, Integer year, String brand, String model, Integer mileage,
+    public Vehicle(String vin, Integer year, String brand, String model, Integer mileage, VehicleState state,
                    String engine, String fuel, Integer power, String type, String photo, boolean rent, Integer price) {
         this.vin = vin;
         this.year = year;
         this.brand = brand;
         this.model = model;
         this.mileage = mileage;
-        this.state = new AvailableState();
+        this.state = state;
         this.engine = engine;
         this.fuel = fuel;
         this.power = power;
@@ -45,7 +45,6 @@ public abstract class Vehicle {
     }
 
     public Vehicle() {
-        this.state = new AvailableState();
     }
 
     public void startRent() {
