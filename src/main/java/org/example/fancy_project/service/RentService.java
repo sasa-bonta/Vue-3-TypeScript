@@ -1,8 +1,6 @@
 package org.example.fancy_project.service;
 
 import org.example.fancy_project.classes.Rent;
-import org.example.fancy_project.classes.Vehicle;
-import org.example.fancy_project.classes.bike.Bike;
 import org.example.fancy_project.dao.RentDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

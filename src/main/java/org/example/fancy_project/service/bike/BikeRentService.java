@@ -5,7 +5,6 @@ import org.example.fancy_project.classes.bike.BikeRent;
 import org.example.fancy_project.dao.BikeDao;
 import org.example.fancy_project.dao.BikeRentDao;
 import org.example.fancy_project.service.RentService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
