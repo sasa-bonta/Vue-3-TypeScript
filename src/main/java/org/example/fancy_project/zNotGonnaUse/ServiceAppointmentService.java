@@ -1,7 +1,8 @@
-package org.example.fancy_project.service;
+/*
+package org.example.fancy_project.zNotGonnaUse;
 
-import org.example.fancy_project.classes.ServiceAppointment;
-import org.example.fancy_project.dao.ServiceAppointmentDao;
+import org.example.fancy_project.zNotGonnaUse.ServiceAppointment;
+import org.example.fancy_project.zNotGonnaUse.ServiceAppointmentDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,3 +24,4 @@ public class ServiceAppointmentService {
         serviceAppointmentDao.deleteById(id);
     }
 }
+*/

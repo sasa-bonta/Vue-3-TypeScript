@@ -33,7 +33,7 @@ public class CarRentService extends RentService<CarRent> {
         CarRent fetchedRent = carRentDao.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("CarRent with ID " + id + " not found."));
 
-        if (fetchedRent.getFinishDate() != null) {
+        if (fetchedRent.getFinishDate() == null) {
             fetchedRent.setFinishDate(getCurrentDateTimeString());
             carRentDao.save(fetchedRent);
 

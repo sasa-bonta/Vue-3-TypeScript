@@ -1,7 +1,8 @@
-package org.example.fancy_project.service;
+/*
+package org.example.fancy_project.zNotGonnaUse;
 
 
-import org.example.fancy_project.dao.ServiceDao;
+import org.example.fancy_project.zNotGonnaUse.ServiceDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,11 +12,11 @@ import java.util.List;
 public class ServiceService {
     @Autowired
     ServiceDao serviceDao;
-    public List<org.example.fancy_project.classes.Service> getAllServices() {
+    public List<org.example.fancy_project.zNotGonnaUse.Service> getAllServices() {
         return serviceDao.findAll();
     }
 
-    public org.example.fancy_project.classes.Service createService(org.example.fancy_project.classes.Service service){
+    public org.example.fancy_project.zNotGonnaUse.Service createService(org.example.fancy_project.zNotGonnaUse.Service service){
         return serviceDao.save(service);
     }
 
@@ -23,3 +24,4 @@ public class ServiceService {
         serviceDao.deleteById(id);
     }
 }
+*/

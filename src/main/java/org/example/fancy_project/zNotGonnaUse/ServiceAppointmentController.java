@@ -1,7 +1,6 @@
-package org.example.fancy_project.controller;
+/*
+package org.example.fancy_project.zNotGonnaUse;
 
-import org.example.fancy_project.classes.ServiceAppointment;
-import org.example.fancy_project.service.ServiceAppointmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,3 +28,4 @@ public class ServiceAppointmentController {
         serviceAppointmentService.deleteServiceAppointment(id);
     }
 }
+*/

@@ -34,7 +34,7 @@ public class BikeRentService extends RentService<BikeRent> {
         BikeRent fetchedRent = bikeRentDao.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("BikeRent with ID " + id + " not found."));
 
-        if (fetchedRent.getFinishDate() != null) {
+        if (fetchedRent.getFinishDate() == null) {
             fetchedRent.setFinishDate(getCurrentDateTimeString());
             bikeRentDao.save(fetchedRent);
 

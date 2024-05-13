@@ -1,4 +1,5 @@
-package org.example.fancy_project.classes;
+/*
+package org.example.fancy_project.zNotGonnaUse;
 
 import jakarta.persistence.*;
 import lombok.Data;
@@ -25,3 +26,4 @@ public class ServiceAppointment {
 
     }
 }
+*/
