@@ -1,6 +1,8 @@
 package org.example.fancy_project.service;
 
 import org.example.fancy_project.classes.Rent;
+import org.example.fancy_project.classes.Vehicle;
+import org.example.fancy_project.classes.bike.Bike;
 import org.example.fancy_project.dao.RentDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,6 +10,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public abstract class RentService<T extends Rent> {
@@ -21,6 +24,20 @@ public abstract class RentService<T extends Rent> {
 
     public T createRent(T rent){
         return rentDao.save(rent);
+    }
+
+    public T endRent(Integer id) {
+        Optional<T> optionalRent = rentDao.findById(id);
+
+        if (optionalRent.isPresent()) {
+            T fetchedRent = optionalRent.get();
+            fetchedRent.setFinishDate(getCurrentDateTimeString());
+            rentDao.save(fetchedRent);
+
+            return fetchedRent;
+        } else {
+            throw new IllegalArgumentException("Rent with ID " + id + " not found.");
+        }
     }
 
     public void deleteRent(Integer id) {

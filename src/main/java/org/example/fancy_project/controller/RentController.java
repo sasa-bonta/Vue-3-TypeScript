@@ -24,6 +24,11 @@ public abstract class RentController<T extends Rent> {
         return rentService.createRent(rent);
     }
 
+    @RequestMapping(value = "endRent/{rentId}", method = RequestMethod.PUT)
+    public T endRent(@PathVariable Integer rentId){
+        return rentService.endRent(rentId);
+    }
+
     @RequestMapping(value = "deleteRent/{rentId}", method = RequestMethod.DELETE)
     public void deleteRent(@PathVariable Integer rentId){
         rentService.deleteRent(rentId);

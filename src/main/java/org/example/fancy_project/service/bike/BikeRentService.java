@@ -13,10 +13,13 @@ import java.util.Optional;
 
 @Service
 public class BikeRentService extends RentService<BikeRent> {
-    @Autowired
-    BikeRentDao bikeRentDao;
-    @Autowired
-    BikeDao bikeDao;
+    final BikeRentDao bikeRentDao;
+    final BikeDao bikeDao;
+
+    public BikeRentService(BikeRentDao bikeRentDao, BikeDao bikeDao) {
+        this.bikeRentDao = bikeRentDao;
+        this.bikeDao = bikeDao;
+    }
 
     public List<BikeRent> getAllRents() {
         return bikeRentDao.findAll();
@@ -25,16 +28,26 @@ public class BikeRentService extends RentService<BikeRent> {
     public BikeRent createRent(BikeRent bikeRent){
         bikeRent.setStartDate(getCurrentDateTimeString());
         bikeRent.setFinishDate(null);
-        Optional<Bike> optionalBike = bikeDao.findById(bikeRent.getBike().getId());
 
-        if (optionalBike.isPresent()) {
-            Bike fetchedBike = optionalBike.get();
-            bikeRent.setBike(fetchedBike);
-        } else {
-            throw new IllegalArgumentException("BikeRent with ID " + bikeRent.getBike().getId() + " not found.");
-        }
+        Bike fetchedBike = bikeDao.findById(bikeRent.getBike().getId())
+                .orElseThrow(() -> new IllegalArgumentException("BikeRent with ID " + bikeRent.getBike().getId() + " not found."));
+        bikeRent.setBike(fetchedBike);
 
         return bikeRentDao.save(bikeRent);
+    }
+
+    public BikeRent endRent(Integer id) {
+        Optional<BikeRent> optionalRent = bikeRentDao.findById(id);
+
+        if (optionalRent.isPresent()) {
+            BikeRent fetchedRent = optionalRent.get();
+            fetchedRent.setFinishDate(getCurrentDateTimeString());
+            bikeRentDao.save(fetchedRent);
+
+            return fetchedRent;
+        } else {
+            throw new IllegalArgumentException("BikeRent with ID " + id + " not found.");
+        }
     }
     public void deleteRent(Integer id) {
         bikeRentDao.deleteById(id);
