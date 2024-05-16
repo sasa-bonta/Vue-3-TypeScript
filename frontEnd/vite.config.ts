@@ -77,10 +77,10 @@ export default defineConfig({
                 rewrite: (path) => path.replace(/^\/api\/rent\/bike\/createRent/, ''),
                 ws: true
             },
-            '/api/rent/bike/getAllRents': {
+            '/api/rent/bike/getAll': {
                 target: 'http://localhost:8080/rent/bike/getAllRents',
                 changeOrigin: true,
-                rewrite: (path) => path.replace(/^\/api\/rent\/bike\/getAllRents/, ''),
+                rewrite: (path) => path.replace(/^\/api\/rent\/bike\/getAll/, ''),
                 ws: true
             },
             'api/rent/bike/endRent': {
@@ -103,10 +103,10 @@ export default defineConfig({
                 rewrite: (path) => path.replace(/^\/api\/rent\/car\/createRent/, ''),
                 ws: true
             },
-            '/api/rent/car/getAllRents': {
+            '/api/rent/car/getAll': {
                 target: 'http://localhost:8080/rent/car/getAllRents',
                 changeOrigin: true,
-                rewrite: (path) => path.replace(/^\/api\/rent\/car\/getAllRents/, ''),
+                rewrite: (path) => path.replace(/^\/api\/rent\/car\/getAll/, ''),
                 ws: true
             },
             'api/rent/car/endRent': {
