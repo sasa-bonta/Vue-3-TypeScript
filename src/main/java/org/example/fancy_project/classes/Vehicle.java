@@ -7,8 +7,9 @@ import org.example.fancy_project.classes.state.VehicleState;
 import org.example.fancy_project.classes.state.VehicleStateConverter;
 
 @Getter
+@Setter
 @MappedSuperclass
-public abstract class Vehicle {
+public abstract class Vehicle implements Cloneable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Integer id;
@@ -18,7 +19,6 @@ public abstract class Vehicle {
     private String brand;
     private String model;
     private Integer mileage;
-    @Setter
     @Convert(converter = VehicleStateConverter.class)
     private VehicleState state;
     private String engine;
@@ -28,7 +28,6 @@ public abstract class Vehicle {
     private String photo;
     private boolean rent;
     private Integer price;
-    @Setter
     @Column(name = "is_deleted")
     private boolean deleted;
 
@@ -66,4 +65,8 @@ public abstract class Vehicle {
         return state.isAvailable();
     }
 
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
 }

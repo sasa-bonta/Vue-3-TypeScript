@@ -11,7 +11,7 @@ import java.util.List;
 @Service
 public abstract class VehicleService<T extends Vehicle> {
     @Autowired
-    VehicleDao<T> vehicleDao;
+    protected VehicleDao<T> vehicleDao;
 
     public List<T> getAll() {
         return vehicleDao.findAll();
@@ -30,5 +30,22 @@ public abstract class VehicleService<T extends Vehicle> {
         fetchedVehicle.setDeleted(true);
 
         vehicleDao.save(fetchedVehicle);
+    }
+
+    public T clone(Integer id, T vehicle) throws CloneNotSupportedException {
+        T fetchedVehicle = vehicleDao.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Bike with ID " + id + " not found."));
+
+        T newVehicle = (T) fetchedVehicle.clone();
+
+        newVehicle.setId(null);
+        newVehicle.setVin(vehicle.getVin());
+        newVehicle.setYear(vehicle.getYear());
+        newVehicle.setMileage(vehicle.getMileage());
+        newVehicle.setPhoto(vehicle.getPhoto());
+
+        vehicleDao.save(newVehicle);
+
+        return newVehicle;
     }
 }

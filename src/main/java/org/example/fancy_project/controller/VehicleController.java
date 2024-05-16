@@ -28,4 +28,9 @@ public abstract class VehicleController<T extends Vehicle> {
     public void delete(@PathVariable Integer id) {
         vehicleService.delete(id);
     }
+
+    @RequestMapping(value = "clone/{id}", method = RequestMethod.POST)
+    public T clone(@PathVariable Integer id, @RequestBody T vehicle) throws CloneNotSupportedException {
+        return vehicleService.clone(id, vehicle);
+    }
 }
