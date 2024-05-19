@@ -8,7 +8,7 @@
 
 - Singleton - All services, controllers and repositories noted with `@Service`, `@Controller`, `@Repository`
 - Builder - create client
-- Prototype - clone function declared in Vehicle, implemented in VehicleService
+- Prototype - clone function declared in Interfaces, implemented in VehicleService
 
 ## Structural Patterns
 
