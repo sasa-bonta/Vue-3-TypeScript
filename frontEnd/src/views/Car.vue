@@ -18,8 +18,7 @@ onMounted(() => {
 
 <template>
 
-
-  <v-container id="cars-container">
+  <v-container id="container">
 
     <v-row class="mx-0">
       <v-btn variant="outlined" class="mb-2 mt-2 button-border w-100" color="orange">
@@ -49,6 +48,7 @@ onMounted(() => {
             <h2><b>{{ car.state.available ? 'Available' : 'Not Available' }}</b></h2>
           </v-row>
         </v-col>
+
         <v-col cols="8">
           <v-row class="ml-3 mr-3">
             <h1><b>{{ `${car.brand} ${car.model} ${car.year}` }}</b></h1>
@@ -75,11 +75,9 @@ onMounted(() => {
               <v-btn variant="outlined" class="mb-2 button-border w-100" color="blue" :disabled="!car.state.available">
                 <h3><b>rent</b></h3>
               </v-btn>
-              <br>
               <v-btn variant="outlined" class="mb-2 button-border w-100" color="yellow">
                 <h3><b>duplicate</b></h3>
               </v-btn>
-              <br>
               <v-btn variant="outlined" class="mb-2 button-border w-100" color="red">
                 <h3><b>delete</b></h3>
               </v-btn>
@@ -88,11 +86,16 @@ onMounted(() => {
         </v-col>
       </v-row>
     </div>
+
   </v-container>
+
 </template>
 
+
+
 <style scoped>
-#cars-container {
+
+#container {
   width: 1280px;
 }
 

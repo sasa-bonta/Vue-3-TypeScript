@@ -1,9 +1,9 @@
 // stores/carStore.ts
 import {defineStore} from 'pinia'
-import {fetchCarList} from "@/api/api";
+import {fetchCarRentList} from "@/api/api";
 import type {CarRent} from "@/stores/Interfaces";
 
-export const useCarStore = defineStore('car', {
+export const useCarRentsStore = defineStore('carRents', {
 
     state: () => ({
         carRents: [] as Array<CarRent>,
@@ -11,11 +11,11 @@ export const useCarStore = defineStore('car', {
         error: null as string | null
     }),
     actions: {
-        async fetchCarList() {
+        async fetchCarRentsList() {
             this.loading = true
             this.error = null
             try {
-                const response = await fetchCarList()
+                const response = await fetchCarRentList()
                 this.carRents = response.data
             } catch (err: any) {
                 this.error = err.message || 'Failed to fetch car rents'
