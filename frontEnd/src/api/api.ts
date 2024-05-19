@@ -6,3 +6,5 @@ const api = axios.create({
 
 export const fetchCarList = () => api.get("car/getAll")
 export const fetchBikeList = () => api.get("bike/getAll")
+export const fetchCarRentList = () => api.get("car/rent/getAll")
+export const fetchBikeRentList = () => api.get("bike/rent/getAll")

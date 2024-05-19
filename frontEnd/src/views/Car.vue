@@ -18,12 +18,23 @@ onMounted(() => {
 
 <template>
 
-  <v-btn variant="outlined" class="mb-2 mt-2 button-border" color="purple">
-    <h3><b>Create new car</b></h3>
-  </v-btn> <br>
 
-  <v-container id="cars-container" class="bg-surface-variant mb-6">
-    <div class="mb-10" v-for="car in cars" :key="car.id">
+  <v-container id="cars-container">
+
+    <v-row class="mx-0">
+      <v-btn variant="outlined" class="mb-2 mt-2 button-border w-100" color="orange">
+        <h3><b>Create new car</b></h3>
+      </v-btn>
+    </v-row>
+    <v-row class="mx-0 mb-5">
+      <router-link :to="{ name: 'carRent'}" class="w-100">
+        <v-btn variant="outlined" class="mb-2 mt-2 button-border w-100" color="purple">
+          <h3><b>Go to rents</b></h3>
+        </v-btn>
+      </router-link>
+    </v-row>
+
+    <div class="mb-10 bg-surface-variant mb-6 px-4 py-4" v-for="car in cars" :key="car.id">
       <v-row>
         <v-col cols="4">
           <v-row>
@@ -45,7 +56,7 @@ onMounted(() => {
             <h1><b>{{ car.price }} EUR</b></h1>
           </v-row>
           <v-row class="ml-10">
-            <v-col cols="5">
+            <v-col cols="4">
               <h3>Engine: {{ car.engine }} <br>
                 Power (HP): {{ car.power }} <br>
                 Fuel: {{ car.fuel }} <br>
@@ -53,28 +64,29 @@ onMounted(() => {
                 Type: {{ car.type }}</h3>
             </v-col>
 
-            <v-col cols="5">
+            <v-col cols="4">
               <h3>Drivetrain: {{ car.drivetrain }} <br>
                 Nr. of seats: {{ car.seats }} <br>
                 VIN: {{ car.vin }} <br>
                 ID: {{ car.id }}</h3>
             </v-col>
 
-            <v-col cols="2">
-              <v-btn variant="outlined" class="mb-2 button-border" color="blue" :disabled="!car.state.available">
+            <v-col cols="4">
+              <v-btn variant="outlined" class="mb-2 button-border w-100" color="blue" :disabled="!car.state.available">
                 <h3><b>rent</b></h3>
-              </v-btn> <br>
-              <v-btn variant="outlined" class="mb-2 button-border" color="yellow">
+              </v-btn>
+              <br>
+              <v-btn variant="outlined" class="mb-2 button-border w-100" color="yellow">
                 <h3><b>duplicate</b></h3>
-              </v-btn> <br>
-              <v-btn variant="outlined" class="mb-2 button-border" color="red">
+              </v-btn>
+              <br>
+              <v-btn variant="outlined" class="mb-2 button-border w-100" color="red">
                 <h3><b>delete</b></h3>
               </v-btn>
             </v-col>
           </v-row>
         </v-col>
       </v-row>
-      <v-divider class="my-4"/>
     </div>
   </v-container>
 </template>
@@ -83,7 +95,9 @@ onMounted(() => {
 #cars-container {
   width: 1280px;
 }
+
 .button-border {
   border-width: 3px;
 }
+
 </style>

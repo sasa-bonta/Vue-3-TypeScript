@@ -1,4 +1,4 @@
-interface Interfaces {
+interface Vehicle {
     id: number,
     vin: string,
     year: number,
@@ -18,17 +18,39 @@ interface Interfaces {
     available: boolean
 }
 
-interface Car extends Interfaces {
+interface Car extends Vehicle {
     drivetrain: string,
     seats: number,
 }
 
-interface Bike extends Interfaces{
+interface Bike extends Vehicle {
     streetLegal: boolean
     backSeat: boolean
 }
 
+interface Rent {
+    id: number,
+    startDate: string,
+    finishDate: string | null,
+    numberOfDays: number,
+    pricePerDay: number,
+    idnp: string,
+    tel: string,
+    email: string,
+}
+
+interface CarRent extends Rent {
+    car: Car
+}
+
+interface BikeRent extends Rent {
+    bike: Bike
+}
+
 export type {
-    Car, Bike
+    Car,
+    Bike,
+    CarRent,
+    BikeRent,
 }
 
