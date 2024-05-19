@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import car from '@/assets/images/car.jpg';
+import bike from '@/assets/images/bike.jpg';
 </script>
 
 
@@ -17,7 +18,7 @@ import car from '@/assets/images/car.jpg';
     <v-img
         :width="380"
         cover
-        :src="car"
+        :src="bike"
     ></v-img>
   </router-link>
 
