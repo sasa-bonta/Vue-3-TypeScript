@@ -22,7 +22,9 @@ const toggleSort = () => {
 
 const filteredAndSortedCars: ComputedRef<Array<Car>> = computed(() => {
   let filteredCars = cars.value.filter((car: Car) => {
-    return showAvailable.value ? car.available : true;
+    const isAvailable = showAvailable.value ? car.available : true;
+    const isNotDeleted = !car.deleted;
+    return isAvailable && isNotDeleted;
   });
 
   if (sortOrder.value === 'asc') {
@@ -43,7 +45,8 @@ const filteredAndSortedCars: ComputedRef<Array<Car>> = computed(() => {
     <div class="mb-6 px-6 pt-6 pb-0 bg-surface-variant">
       <v-row>
         <v-col cols="10">
-          <v-btn variant="outlined" class="mb-2 mt-2 button-border w-100" color="light-green-accent-3" @click="toggleSort">
+          <v-btn variant="outlined" class="mb-2 mt-2 button-border w-100" color="light-green-accent-3"
+                 @click="toggleSort">
             <h3><b>Sort by price {{ sortOrder }}</b></h3>
           </v-btn>
         </v-col>
@@ -125,7 +128,6 @@ const filteredAndSortedCars: ComputedRef<Array<Car>> = computed(() => {
   </v-container>
 
 </template>
-
 
 
 <style scoped>

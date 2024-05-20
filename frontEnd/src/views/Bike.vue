@@ -23,7 +23,9 @@ const toggleSort = () => {
 
 const filteredAndSortedBikes: ComputedRef<Array<Bike>> = computed(() => {
   let filteredBikes = bikes.value.filter((bike: Bike) => {
-    return showAvailable.value ? bike.available : true;
+    const isAvailable = showAvailable.value ? bike.available : true;
+    const isNotDeleted = !bike.deleted;
+    return isAvailable && isNotDeleted;
   });
 
   if (sortOrder.value === 'asc') {
@@ -44,7 +46,8 @@ const filteredAndSortedBikes: ComputedRef<Array<Bike>> = computed(() => {
     <div class="mb-6 px-6 pt-6 pb-0 bg-surface-variant">
       <v-row>
         <v-col cols="10">
-          <v-btn variant="outlined" class="mb-2 mt-2 button-border w-100" color="light-green-accent-3" @click="toggleSort">
+          <v-btn variant="outlined" class="mb-2 mt-2 button-border w-100" color="light-green-accent-3"
+                 @click="toggleSort">
             <h3><b>Sort by price {{ sortOrder }}</b></h3>
           </v-btn>
         </v-col>
@@ -99,8 +102,8 @@ const filteredAndSortedBikes: ComputedRef<Array<Bike>> = computed(() => {
             </v-col>
 
             <v-col cols="4">
-              <h3>Street legal: {{ bike.streetLegal}} <br>
-                Nr. of seats: {{ bike.backSeat}} <br>
+              <h3>Street legal: {{ bike.streetLegal }} <br>
+                Nr. of seats: {{ bike.backSeat }} <br>
                 VIN: {{ bike.vin }} <br>
                 ID: {{ bike.id }}</h3>
             </v-col>
@@ -108,10 +111,12 @@ const filteredAndSortedBikes: ComputedRef<Array<Bike>> = computed(() => {
             <v-col cols="4">
               <v-btn variant="outlined" class="mb-2 button-border w-100" color="blue" :disabled="!bike.state.available">
                 <h3><b>rent</b></h3>
-              </v-btn> <br>
+              </v-btn>
+              <br>
               <v-btn variant="outlined" class="mb-2 button-border w-100" color="yellow">
                 <h3><b>duplicate</b></h3>
-              </v-btn> <br>
+              </v-btn>
+              <br>
               <v-btn variant="outlined" class="mb-2 button-border w-100" color="red">
                 <h3><b>delete</b></h3>
               </v-btn>
@@ -127,6 +132,7 @@ const filteredAndSortedBikes: ComputedRef<Array<Bike>> = computed(() => {
 #bikes-container {
   width: 1280px;
 }
+
 .button-border {
   border-width: 3px;
 }
