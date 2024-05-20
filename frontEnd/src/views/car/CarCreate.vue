@@ -26,7 +26,7 @@ const form = reactive({
 const submitForm = async () => {
   try {
     await createCar(form)
-    await router.push({ name: 'car' })
+    await router.push({name: 'car'})
   } catch (error) {
     console.error('Failed to create car:', error)
   }
@@ -51,10 +51,10 @@ const submitForm = async () => {
         </v-col>
         <v-col cols="12" md="6">
           <v-text-field
-            v-model="form.mileage"
-            label="Mileage"
-            type="number"
-            required
+              v-model="form.mileage"
+              label="Mileage"
+              type="number"
+              required
           ></v-text-field>
         </v-col>
         <v-col cols="12" md="6">
@@ -73,9 +73,6 @@ const submitForm = async () => {
           <v-text-field v-model="form.photo" label="Photo URL" required></v-text-field>
         </v-col>
         <v-col cols="12" md="6">
-          <v-switch v-model="form.rent" label="Rent"></v-switch>
-        </v-col>
-        <v-col cols="12" md="6">
           <v-text-field v-model="form.price" label="Price" type="number" required></v-text-field>
         </v-col>
         <v-col cols="12" md="6">
@@ -88,7 +85,7 @@ const submitForm = async () => {
           <v-text-field v-model="form.seats" label="Seats" type="number" required></v-text-field>
         </v-col>
         <v-col cols="12">
-          <v-btn @click="submitForm" color="primary"> Submit </v-btn>
+          <v-btn @click="submitForm" color="primary"> Submit</v-btn>
         </v-col>
       </v-row>
     </v-form>

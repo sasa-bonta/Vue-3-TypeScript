@@ -19,3 +19,24 @@ interface CarForm extends VehicleForm {
   drivetrain: string
   seats: number
 }
+
+interface BikeForm extends VehicleForm {
+  streetLegal: boolean
+  backSeat: boolean
+}
+
+interface RentForm {
+  numberOfDays: number
+  pricePerDay: number
+  idnp: string
+  tel: string
+  email: string
+}
+
+interface CarRentForm extends RentForm {
+  car: { id: number }
+}
+
+interface BikeRentForm extends RentForm {
+  bike: { id: number }
+}
