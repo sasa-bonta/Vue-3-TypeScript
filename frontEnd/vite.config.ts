@@ -37,12 +37,6 @@ export default defineConfig({
                 rewrite: (path) => path.replace(/^\/api\/bike\/getAll/, ''),
                 ws: true
             },
-            'api/bike/delete': {
-                target: 'http://localhost:8080/bike/delete',
-                changeOrigin: true,
-                rewrite: (path) => path.replace(/^\/api\/bike\/delete/, ''),
-                ws: true
-            },
 
             // Car
             'api/car/create': {
@@ -83,12 +77,6 @@ export default defineConfig({
                 rewrite: (path) => path.replace(/^\/api\/rent\/bike\/endRent/, ''),
                 ws: true
             },
-            'api/rent/bike/deleteRent': {
-                target: 'http://localhost:8080/rent/bike/deleteRent',
-                changeOrigin: true,
-                rewrite: (path) => path.replace(/^\/api\/rent\/rent\/bike\/deleteRent/, ''),
-                ws: true
-            },
 
             //Car rent
             'api/rent/car/createRent': {
@@ -107,12 +95,6 @@ export default defineConfig({
                 target: 'http://localhost:8080/rent/car/endRent',
                 changeOrigin: true,
                 rewrite: (path) => path.replace(/^\/api\/rent\/car\/endRent/, ''),
-                ws: true
-            },
-            'api/rent/car/deleteRent': {
-                target: 'http://localhost:8080/rent/car/deleteRent',
-                changeOrigin: true,
-                rewrite: (path) => path.replace(/^\/api\/rent\/rent\/car\/deleteRent/, ''),
                 ws: true
             },
 
