@@ -13,3 +13,5 @@
 ## Structural Patterns
 
 - Proxy - vite.config.ts proxy server configuration
+- Proxy - BikeRent/CarRent filter
+- Facade - api/api.ts
