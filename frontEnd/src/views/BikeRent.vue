@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {computed, onMounted, ref} from 'vue'
+import {computed, type ComputedRef, onMounted, ref} from 'vue'
 import {storeToRefs} from "pinia";
 import {useBikeRentStore} from "@/stores/bikesRents";
 import type {BikeRent} from "@/stores/Interfaces";
@@ -16,7 +16,7 @@ const phone = ref('');
 const email = ref('');
 const showCompleted = ref(false)
 
-const filteredBikeRents = computed(() => {
+const filteredBikeRents: ComputedRef<Array<BikeRent>> = computed(() => {
   return bikeRents.value.filter((rent: BikeRent) => {
     const matchesIdnp = idnp.value ? rent.idnp.includes(idnp.value) : true;
     const matchesPhone = phone.value ? rent.tel.includes(phone.value) : true;
