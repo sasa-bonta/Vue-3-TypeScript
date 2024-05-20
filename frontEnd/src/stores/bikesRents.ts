@@ -2,7 +2,7 @@ import {defineStore} from 'pinia'
 import {fetchBikeRentList} from "@/api/api";
 import type {BikeRent} from "@/stores/Interfaces";
 
-export const useBikeStore = defineStore('bikeRent', {
+export const useBikeRentStore = defineStore('bikeRent', {
 
     state: () => ({
         bikeRents: [] as Array<BikeRent>,

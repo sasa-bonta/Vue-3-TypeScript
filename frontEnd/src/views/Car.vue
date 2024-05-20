@@ -33,7 +33,7 @@ onMounted(() => {
       </router-link>
     </v-row>
 
-    <div class="mb-10 bg-surface-variant mb-6 px-4 py-4" v-for="car in cars" :key="car.id">
+    <div class="bg-surface-variant mb-6 px-4 py-4" v-for="car in cars" :key="car.id">
       <v-row>
         <v-col cols="4">
           <v-row>

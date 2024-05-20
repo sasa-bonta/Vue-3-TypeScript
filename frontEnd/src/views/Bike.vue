@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import bikeIcon from '@/assets/images/car.jpg';
+import bikeIcon from '@/assets/images/bike.jpg';
 
 import {onMounted} from 'vue'
 import {useBikeStore} from "@/stores/bikes";
@@ -26,12 +26,14 @@ onMounted(() => {
       </v-btn>
     </v-row>
     <v-row class="mx-0 mb-5">
-      <v-btn variant="outlined" class="mb-2 mt-2 button-border w-100" color="purple">
-        <h3><b>Go to rents</b></h3>
-      </v-btn>
+      <router-link :to="{ name: 'bikeRent'}" class="w-100">
+        <v-btn variant="outlined" class="mb-2 mt-2 button-border w-100" color="purple">
+          <h3><b>Go to rents</b></h3>
+        </v-btn>
+      </router-link>
     </v-row>
 
-    <div class="mb-10 bg-surface-variant mb-6 px-4 py-4" v-for="bike in bikes" :key="bike.id">
+    <div class="bg-surface-variant mb-6 px-4 py-4" v-for="bike in bikes" :key="bike.id">
       <v-row>
         <v-col cols="4">
           <v-row>
