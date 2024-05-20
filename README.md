@@ -14,4 +14,5 @@
 
 - Proxy - vite.config.ts proxy server configuration
 - Proxy - BikeRent/CarRent filter
+- Proxy - Bike/Car filter, sort
 - Facade - api/api.ts

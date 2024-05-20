@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import bikeIcon from '@/assets/images/bike.jpg';
 
-import {onMounted} from 'vue'
+import {computed, type ComputedRef, onMounted, type Ref, ref, type UnwrapRef} from 'vue'
 import {useBikeStore} from "@/stores/bikes";
 import {storeToRefs} from "pinia";
+import type {Bike} from "@/stores/Interfaces";
 
 
 const bikeStore = useBikeStore()
@@ -14,11 +15,45 @@ onMounted(() => {
   bikeStore.fetchBikeList()
 })
 
+const showAvailable = ref(false)
+const sortOrder: Ref<UnwrapRef<'asc' | 'desc'>> = ref('asc')
+const toggleSort = () => {
+  sortOrder.value = (sortOrder.value === 'asc') ? 'desc' : 'asc'
+}
+
+const filteredAndSortedBikes: ComputedRef<Array<Bike>> = computed(() => {
+  let filteredBikes = bikes.value.filter((bike: Bike) => {
+    return showAvailable.value ? bike.available : true;
+  });
+
+  if (sortOrder.value === 'asc') {
+    filteredBikes.sort((a, b) => a.price - b.price);
+  } else {
+    filteredBikes.sort((a, b) => b.price - a.price);
+  }
+
+  return filteredBikes;
+});
+
 </script>
 
 <template>
 
   <v-container id="bikes-container">
+
+    <div class="mb-6 px-6 pt-6 pb-0 bg-surface-variant">
+      <v-row>
+        <v-col cols="10">
+          <v-btn variant="outlined" class="mb-2 mt-2 button-border w-100" color="light-green-accent-3" @click="toggleSort">
+            <h3><b>Sort by price {{ sortOrder }}</b></h3>
+          </v-btn>
+        </v-col>
+
+        <v-col cols="2">
+          <v-checkbox label="Hide not available" v-model="showAvailable"></v-checkbox>
+        </v-col>
+      </v-row>
+    </div>
 
     <v-row class="mx-0">
       <v-btn variant="outlined" class="mb-2 mt-2 button-border w-100" color="orange">
@@ -33,7 +68,7 @@ onMounted(() => {
       </router-link>
     </v-row>
 
-    <div class="bg-surface-variant mb-6 px-4 py-4" v-for="bike in bikes" :key="bike.id">
+    <div class="bg-surface-variant mb-6 px-4 py-4" v-for="bike in filteredAndSortedBikes" :key="bike.id">
       <v-row>
         <v-col cols="4">
           <v-row>
