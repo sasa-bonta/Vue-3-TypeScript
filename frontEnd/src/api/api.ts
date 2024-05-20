@@ -9,4 +9,4 @@ export const fetchBikeRentList = () => api.get("rent/bike/getAll")
 
 export const fetchCarList = () => api.get("car/getAll")
 export const fetchCarRentList = () => api.get("rent/car/getAll")
-export const deleteCarById = (id: number) => api.delete(`car/delete/${id}`)
+export const deleteCarById = (id: number) => axios.delete(`http://localhost:8080/car/delete/${id}`)

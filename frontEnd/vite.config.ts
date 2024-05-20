@@ -63,12 +63,6 @@ export default defineConfig({
                 rewrite: (path) => path.replace(/^\/api\/car\/getAll/, ''),
                 ws: true
             },
-            'api/car/delete': {
-                target: 'http://localhost:8080/car/delete',
-                changeOrigin: true,
-                rewrite: (path) => path.replace(/^\/api\/car\/delete/, ''),
-                ws: true
-            },
 
             //Bike rent
             'api/rent/bike/createRent': {
