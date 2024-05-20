@@ -1,8 +1,8 @@
 <script setup lang="ts">
-
-import {onMounted} from 'vue'
+import {computed, onMounted, ref} from 'vue'
 import {storeToRefs} from "pinia";
 import {useBikeRentStore} from "@/stores/bikesRents";
+import type {BikeRent} from "@/stores/Interfaces";
 
 const store = useBikeRentStore()
 const {bikeRents, loading, error} = storeToRefs(store)
@@ -11,12 +11,69 @@ onMounted(() => {
   store.fetchBikeRentList()
 })
 
+const idnp = ref('');
+const phone = ref('');
+const email = ref('');
+const showCompleted = ref(false)
+
+const filteredBikeRents = computed(() => {
+  return bikeRents.value.filter((rent: BikeRent) => {
+    const matchesIdnp = idnp.value ? rent.idnp.includes(idnp.value) : true;
+    const matchesPhone = phone.value ? rent.tel.includes(phone.value) : true;
+    const matchesEmail = email.value ? rent.email.includes(email.value) : true;
+    const matchesCompleted = showCompleted.value ? true : rent.finishDate === null;
+
+    return matchesIdnp && matchesPhone && matchesEmail && matchesCompleted;
+  });
+});
+
 </script>
 
 <template>
   <v-container id="container">
 
-    <div class="bg-surface-variant mb-4 px-4 py-4" v-for="rent in bikeRents" :key="rent.id">
+    <div class="mb-6 px-6 pt-6 pb-0 bg-surface-variant">
+      <v-row>
+        <v-col cols="10">
+          <v-row>
+            <v-col cols="4">
+              <v-text-field
+                  v-model="idnp"
+                  :counter="10"
+                  label="IDNP"
+                  hide-details
+                  required
+              ></v-text-field>
+            </v-col>
+
+            <v-col cols="4">
+              <v-text-field
+                  v-model="phone"
+                  :counter="10"
+                  label="Phone"
+                  hide-details
+                  required
+              ></v-text-field>
+            </v-col>
+
+            <v-col cols="4">
+              <v-text-field
+                  v-model="email"
+                  label="E-mail"
+                  hide-details
+                  required
+              ></v-text-field>
+            </v-col>
+          </v-row>
+        </v-col>
+
+        <v-col cols="2">
+          <v-checkbox label="Show completed" v-model="showCompleted"></v-checkbox>
+        </v-col>
+      </v-row>
+    </div>
+
+    <div class="bg-surface-variant mb-4 px-4 py-4" v-for="rent in filteredBikeRents" :key="rent.id">
       <v-row>
 
         <v-col cols="10">
