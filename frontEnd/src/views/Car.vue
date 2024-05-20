@@ -5,6 +5,7 @@ import {computed, type ComputedRef, onMounted, type Ref, ref, type UnwrapRef} fr
 import {useCarStore} from "@/stores/cars";
 import {storeToRefs} from "pinia";
 import type {Car} from "@/stores/Interfaces";
+import {deleteCarById} from "@/api/api";
 
 const carStore = useCarStore()
 
@@ -35,6 +36,15 @@ const filteredAndSortedCars: ComputedRef<Array<Car>> = computed(() => {
 
   return filteredCars;
 });
+
+const deleteCar = async (id: number) => {
+  try {
+    await deleteCarById(id);
+    await carStore.fetchCarList();
+  } catch (error) {
+    console.error('Failed to delete car:', error);
+  }
+};
 
 </script>
 
@@ -116,7 +126,7 @@ const filteredAndSortedCars: ComputedRef<Array<Car>> = computed(() => {
               <v-btn variant="outlined" class="mb-2 button-border w-100" color="yellow">
                 <h3><b>duplicate</b></h3>
               </v-btn>
-              <v-btn variant="outlined" class="mb-2 button-border w-100" color="red">
+              <v-btn variant="outlined" class="mb-2 button-border w-100" color="red" @click="deleteCar(car.id)">
                 <h3><b>delete</b></h3>
               </v-btn>
             </v-col>
