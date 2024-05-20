@@ -5,6 +5,7 @@ import {computed, type ComputedRef, onMounted, type Ref, ref, type UnwrapRef} fr
 import {useBikeStore} from "@/stores/bikes";
 import {storeToRefs} from "pinia";
 import type {Bike} from "@/stores/Interfaces";
+import {deleteBikeById} from "@/api/api";
 
 
 const bikeStore = useBikeStore()
@@ -36,6 +37,21 @@ const filteredAndSortedBikes: ComputedRef<Array<Bike>> = computed(() => {
 
   return filteredBikes;
 });
+
+const deleteBike = async (id: number) => {
+  const isConfirmed = confirm('Are you sure you want to delete this bike?');
+
+  if (!isConfirmed) {
+    return;
+  }
+
+  try {
+    await deleteBikeById(id);
+    await bikeStore.fetchBikeList();
+  } catch (error) {
+    console.error('Failed to delete bike:', error);
+  }
+};
 
 </script>
 
@@ -117,7 +133,7 @@ const filteredAndSortedBikes: ComputedRef<Array<Bike>> = computed(() => {
                 <h3><b>duplicate</b></h3>
               </v-btn>
               <br>
-              <v-btn variant="outlined" class="mb-2 button-border w-100" color="red">
+              <v-btn variant="outlined" class="mb-2 button-border w-100" color="red" @click="deleteBike(bike.id)">
                 <h3><b>delete</b></h3>
               </v-btn>
             </v-col>
