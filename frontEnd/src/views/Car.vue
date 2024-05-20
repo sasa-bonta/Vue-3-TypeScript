@@ -14,7 +14,7 @@ onMounted(() => {
   carStore.fetchCarList()
 })
 
-const showAvailable = ref(false)
+const showAvailable = ref(true)
 const sortOrder: Ref<UnwrapRef<'asc' | 'desc'>> = ref('asc')
 const toggleSort = () => {
   sortOrder.value = (sortOrder.value === 'asc') ? 'desc' : 'asc'
