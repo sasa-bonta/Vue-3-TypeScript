@@ -3,11 +3,11 @@ import {RouterView} from 'vue-router'
 </script>
 
 <template>
-  <RouterView/>
+  <RouterView />
 </template>
 
 <style scoped>
 .v-container {
-  width: 1280px;;
+  width: 1280px;
 }
 </style>

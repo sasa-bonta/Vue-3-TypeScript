@@ -1,11 +1,5 @@
-<script setup lang="ts">
+<script setup lang="ts"></script>
 
-</script>
+<template>hui hui</template>
 
-<template>
-hui hui
-</template>
-
-<style scoped>
-
-</style>
+<style scoped></style>
