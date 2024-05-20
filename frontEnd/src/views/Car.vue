@@ -38,6 +38,12 @@ const filteredAndSortedCars: ComputedRef<Array<Car>> = computed(() => {
 });
 
 const deleteCar = async (id: number) => {
+  const isConfirmed = confirm('Are you sure you want to delete this car?');
+
+  if (!isConfirmed) {
+    return;
+  }
+
   try {
     await deleteCarById(id);
     await carStore.fetchCarList();
