@@ -4,7 +4,7 @@ import carIcon from '@/assets/images/car.jpg';
 import {computed, type ComputedRef, onMounted, type Ref, ref, type UnwrapRef} from 'vue'
 import {useCarStore} from "@/stores/cars";
 import {storeToRefs} from "pinia";
-import type {Car} from "@/stores/Interfaces";
+import type {Car} from "@/interfaces/ws";
 import {deleteCarById} from "@/api/api";
 
 const carStore = useCarStore()
@@ -56,7 +56,7 @@ const deleteCar = async (id: number) => {
 
 <template>
 
-  <v-container id="container">
+  <v-container>
 
     <div class="mb-6 px-6 pt-6 pb-0 bg-surface-variant">
       <v-row>
@@ -75,9 +75,11 @@ const deleteCar = async (id: number) => {
 
 
     <v-row class="mx-0">
+      <router-link :to="{ name: 'carCreate'}" class="w-100">
       <v-btn variant="outlined" class="mb-2 mt-2 button-border w-100" color="orange">
         <h3><b>Create new car</b></h3>
       </v-btn>
+      </router-link>
     </v-row>
     <v-row class="mx-0 mb-5">
       <router-link :to="{ name: 'carRent'}" class="w-100">
@@ -147,10 +149,6 @@ const deleteCar = async (id: number) => {
 
 
 <style scoped>
-
-#container {
-  width: 1280px;
-}
 
 .button-border {
   border-width: 3px;

@@ -3,7 +3,7 @@
 import {computed, type ComputedRef, onMounted, ref} from 'vue'
 import {useCarRentsStore} from "@/stores/carsRents";
 import {storeToRefs} from "pinia";
-import type {CarRent} from "@/stores/Interfaces";
+import type {CarRent} from "@/interfaces/ws";
 
 const store = useCarRentsStore()
 const {carRents, loading, error} = storeToRefs(store)
@@ -31,7 +31,7 @@ const filteredCarRents: ComputedRef<Array<CarRent>> = computed(() => {
 </script>
 
 <template>
-  <v-container id="container">
+  <v-container>
 
     <div class="mb-6 px-6 pt-6 pb-0 bg-surface-variant">
       <v-row>
@@ -110,10 +110,6 @@ const filteredCarRents: ComputedRef<Array<CarRent>> = computed(() => {
 
 
 <style scoped>
-
-#container {
-  width: 1280px;
-}
 
 .button-border {
   border-width: 3px;

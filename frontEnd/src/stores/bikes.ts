@@ -1,6 +1,6 @@
 import {defineStore} from 'pinia'
 import {fetchBikeList} from "@/api/api";
-import type {Bike} from "@/stores/Interfaces";
+import type {Bike} from "@/interfaces/ws";
 
 export const useBikeStore = defineStore('bike', {
 

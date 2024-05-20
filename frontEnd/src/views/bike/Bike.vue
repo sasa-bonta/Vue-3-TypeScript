@@ -4,7 +4,7 @@ import bikeIcon from '@/assets/images/bike.jpg';
 import {computed, type ComputedRef, onMounted, type Ref, ref, type UnwrapRef} from 'vue'
 import {useBikeStore} from "@/stores/bikes";
 import {storeToRefs} from "pinia";
-import type {Bike} from "@/stores/Interfaces";
+import type {Bike} from "@/interfaces/ws";
 import {deleteBikeById} from "@/api/api";
 
 
@@ -57,7 +57,7 @@ const deleteBike = async (id: number) => {
 
 <template>
 
-  <v-container id="bikes-container">
+  <v-container>
 
     <div class="mb-6 px-6 pt-6 pb-0 bg-surface-variant">
       <v-row>
@@ -75,9 +75,11 @@ const deleteBike = async (id: number) => {
     </div>
 
     <v-row class="mx-0">
-      <v-btn variant="outlined" class="mb-2 mt-2 button-border w-100" color="orange">
-        <h3><b>Create new bike</b></h3>
-      </v-btn>
+      <router-link :to="{ name: 'bikeCreate'}" class="w-100">
+        <v-btn variant="outlined" class="mb-2 mt-2 button-border w-100" color="orange">
+          <h3><b>Create new bike</b></h3>
+        </v-btn>
+      </router-link>
     </v-row>
     <v-row class="mx-0 mb-5">
       <router-link :to="{ name: 'bikeRent'}" class="w-100">
@@ -145,9 +147,6 @@ const deleteBike = async (id: number) => {
 </template>
 
 <style scoped>
-#bikes-container {
-  width: 1280px;
-}
 
 .button-border {
   border-width: 3px;

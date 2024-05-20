@@ -2,7 +2,7 @@
 import {computed, type ComputedRef, onMounted, ref} from 'vue'
 import {storeToRefs} from "pinia";
 import {useBikeRentStore} from "@/stores/bikesRents";
-import type {BikeRent} from "@/stores/Interfaces";
+import type {BikeRent} from "@/interfaces/ws";
 
 const store = useBikeRentStore()
 const {bikeRents, loading, error} = storeToRefs(store)
@@ -30,7 +30,7 @@ const filteredBikeRents: ComputedRef<Array<BikeRent>> = computed(() => {
 </script>
 
 <template>
-  <v-container id="container">
+  <v-container>
 
     <div class="mb-6 px-6 pt-6 pb-0 bg-surface-variant">
       <v-row>
@@ -108,10 +108,6 @@ const filteredBikeRents: ComputedRef<Array<BikeRent>> = computed(() => {
 
 
 <style scoped>
-
-#container {
-  width: 1280px;
-}
 
 .button-border {
   border-width: 3px;

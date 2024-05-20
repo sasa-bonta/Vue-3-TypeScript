@@ -19,12 +19,6 @@ export default defineConfig({
     server: {
         proxy: {
             // Bike
-            'api/bike/create': {
-                target: 'http://localhost:8080/bike/create',
-                changeOrigin: true,
-                rewrite: (path) => path.replace(/^\/api\/bike\/create/, ''),
-                ws: true
-            },
             'api/bike/clone': {
                 target: 'http://localhost:8080/bike/clone',
                 changeOrigin: true,
@@ -39,12 +33,6 @@ export default defineConfig({
             },
 
             // Car
-            'api/car/create': {
-                target: 'http://localhost:8080/car/create',
-                changeOrigin: true,
-                rewrite: (path) => path.replace(/^\/api\/car\/create/, ''),
-                ws: true
-            },
             'api/car/clone': {
                 target: 'http://localhost:8080/car/clone',
                 changeOrigin: true,
@@ -59,12 +47,6 @@ export default defineConfig({
             },
 
             //Bike rent
-            'api/rent/bike/createRent': {
-                target: 'http://localhost:8080/rent/bike/createRent',
-                changeOrigin: true,
-                rewrite: (path) => path.replace(/^\/api\/rent\/bike\/createRent/, ''),
-                ws: true
-            },
             '/api/rent/bike/getAll': {
                 target: 'http://localhost:8080/rent/bike/getAllRents',
                 changeOrigin: true,
@@ -79,12 +61,6 @@ export default defineConfig({
             },
 
             //Car rent
-            'api/rent/car/createRent': {
-                target: 'http://localhost:8080/rent/car/createRent',
-                changeOrigin: true,
-                rewrite: (path) => path.replace(/^\/api\/rent\/car\/createRent/, ''),
-                ws: true
-            },
             '/api/rent/car/getAll': {
                 target: 'http://localhost:8080/rent/car/getAllRents',
                 changeOrigin: true,
@@ -99,14 +75,8 @@ export default defineConfig({
             },
 
             // User
-            'api/user/create': {
-                target: 'http://localhost:8080/user/create',
-                changeOrigin: true,
-                rewrite: (path) => path.replace(/^\/api\/user\/create/, ''),
-                ws: true
-            },
             '/api/user/getAll': {
-                target: 'http://localhost:8080/user/create',
+                target: 'http://localhost:8080/user/getAll',
                 changeOrigin: true,
                 rewrite: (path) => path.replace(/^\/api\/user\/getAll/, ''),
                 ws: true

@@ -7,5 +7,7 @@ import {RouterView} from 'vue-router'
 </template>
 
 <style scoped>
-
+.v-container {
+  width: 1280px;;
+}
 </style>
