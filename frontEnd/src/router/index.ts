@@ -6,6 +6,8 @@ import BikeRent from '@/views/bike/BikeRent.vue'
 import CarRent from '@/views/car/CarRent.vue'
 import CarCreate from '@/views/car/CarCreate.vue'
 import BikeCreate from '@/views/bike/BikeCreate.vue'
+import BikeCreateRent from "@/views/bike/BikeCreateRent.vue";
+import CarCreateRent from "@/views/car/CarCreateRent.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -31,6 +33,11 @@ const router = createRouter({
       name: 'bikeRent',
       component: BikeRent
     },
+    {
+      path: '/bike/createRent/:id',
+      name: 'bikeCreateRent',
+      component: BikeCreateRent
+    },
 
     {
       path: '/car',
@@ -46,7 +53,13 @@ const router = createRouter({
       path: '/rent/car',
       name: 'carRent',
       component: CarRent
-    }
+    },
+    {
+      path: '/car/createRent/:id',
+      name: 'carCreateRent',
+      component: CarCreateRent
+    },
+
   ]
 })
 

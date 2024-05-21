@@ -143,6 +143,7 @@ const deleteCar = async (id: number) => {
                 variant="outlined"
                 class="mb-2 button-border w-100"
                 color="blue"
+                @click="$router.push({name: 'carCreateRent', params: { id: car.id }})"
                 :disabled="!car.state.available"
               >
                 <h3><b>rent</b></h3>
@@ -155,6 +156,7 @@ const deleteCar = async (id: number) => {
                 class="mb-2 button-border w-100"
                 color="red"
                 @click="deleteCar(car.id)"
+                :disabled="!car.state.available"
               >
                 <h3><b>delete</b></h3>
               </v-btn>

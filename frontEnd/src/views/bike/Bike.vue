@@ -9,7 +9,7 @@ import {deleteBikeById} from '@/api/api'
 
 const bikeStore = useBikeStore()
 
-const { bikes, loading, error } = storeToRefs(bikeStore)
+const {bikes, loading, error} = storeToRefs(bikeStore)
 
 onMounted(() => {
   bikeStore.fetchBikeList()
@@ -59,10 +59,10 @@ const deleteBike = async (id: number) => {
       <v-row>
         <v-col cols="10">
           <v-btn
-            variant="outlined"
-            class="mb-2 mt-2 button-border w-100"
-            color="light-green-accent-3"
-            @click="toggleSort"
+              variant="outlined"
+              class="mb-2 mt-2 button-border w-100"
+              color="light-green-accent-3"
+              @click="toggleSort"
           >
             <h3>
               <b>Sort by price {{ sortOrder }}</b>
@@ -92,9 +92,9 @@ const deleteBike = async (id: number) => {
     </v-row>
 
     <div
-      class="bg-surface-variant mb-6 px-4 py-4"
-      v-for="bike in filteredAndSortedBikes"
-      :key="bike.id"
+        class="bg-surface-variant mb-6 px-4 py-4"
+        v-for="bike in filteredAndSortedBikes"
+        :key="bike.id"
     >
       <v-row>
         <v-col cols="4">
@@ -112,7 +112,7 @@ const deleteBike = async (id: number) => {
             <h1>
               <b>{{ `${bike.brand} ${bike.model} ${bike.year}` }}</b>
             </h1>
-            <v-spacer />
+            <v-spacer/>
             <h1>
               <b>{{ bike.price }} EUR</b>
             </h1>
@@ -120,42 +120,46 @@ const deleteBike = async (id: number) => {
           <v-row class="ml-10">
             <v-col cols="4">
               <h3>
-                Engine: {{ bike.engine }} <br />
-                Power (HP): {{ bike.power }} <br />
-                Fuel: {{ bike.fuel }} <br />
-                Transmission: {{ bike.transmission }} <br />
+                Engine: {{ bike.engine }} <br/>
+                Power (HP): {{ bike.power }} <br/>
+                Fuel: {{ bike.fuel }} <br/>
+                Transmission: {{ bike.transmission }} <br/>
                 Type: {{ bike.type }}
               </h3>
             </v-col>
 
             <v-col cols="4">
               <h3>
-                Street legal: {{ bike.streetLegal }} <br />
-                Nr. of seats: {{ bike.backSeat }} <br />
-                VIN: {{ bike.vin }} <br />
+                Street legal: {{ bike.streetLegal }} <br/>
+                Nr. of seats: {{ bike.backSeat }} <br/>
+                VIN: {{ bike.vin }} <br/>
                 ID: {{ bike.id }}
               </h3>
             </v-col>
 
             <v-col cols="4">
               <v-btn
-                variant="outlined"
-                class="mb-2 button-border w-100"
-                color="blue"
-                :disabled="!bike.state.available"
+                  variant="outlined"
+                  class="mb-2 button-border w-100"
+                  color="blue"
+                  @click="$router.push({name: 'bikeCreateRent', params: { id: bike.id }})"
+                  :disabled="!bike.state.available"
               >
                 <h3><b>rent</b></h3>
               </v-btn>
-              <br />
-              <v-btn variant="outlined" class="mb-2 button-border w-100" color="yellow">
+              <br/>
+              <v-btn variant="outlined"
+                     class="mb-2 button-border w-100"
+                     color="yellow">
                 <h3><b>duplicate</b></h3>
               </v-btn>
-              <br />
+              <br/>
               <v-btn
-                variant="outlined"
-                class="mb-2 button-border w-100"
-                color="red"
-                @click="deleteBike(bike.id)"
+                  variant="outlined"
+                  class="mb-2 button-border w-100"
+                  color="red"
+                  @click="deleteBike(bike.id)"
+                  :disabled="!bike.state.available"
               >
                 <h3><b>delete</b></h3>
               </v-btn>
