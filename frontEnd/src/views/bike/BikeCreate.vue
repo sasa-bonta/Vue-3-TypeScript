@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import {reactive} from 'vue'
-import {createBike} from '@/api/api'
-import {useRouter} from 'vue-router'
+import { reactive } from 'vue'
+import { createBike } from '@/api/api'
+import { useRouter } from 'vue-router'
 
 const router = useRouter()
 

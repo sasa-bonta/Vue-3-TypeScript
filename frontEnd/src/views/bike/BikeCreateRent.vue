@@ -1,26 +1,26 @@
 <script setup lang="ts">
-import {computed, reactive} from 'vue'
-import {createBikeRent} from '@/api/api'
-import {useRoute, useRouter} from 'vue-router'
+import { computed, reactive } from 'vue'
+import { createBikeRent } from '@/api/api'
+import { useRoute, useRouter } from 'vue-router'
 
-const route = useRoute();
-const id = computed(() => route.params.id);
+const route = useRoute()
+const id = computed(() => route.params.id)
 
 const router = useRouter()
 
 const form = reactive({
   numberOfDays: 1,
   pricePerDay: 100,
-  idnp: "123456",
-  tel: "11111",
-  email: "email@email.email",
-  bike: {id: Number(id.value)},
+  idnp: '123456',
+  tel: '11111',
+  email: 'email@email.email',
+  bike: { id: Number(id.value) }
 } as BikeRentForm)
 
 const submitForm = async () => {
   try {
     await createBikeRent(form)
-    await router.push({name: 'bike'})
+    await router.push({ name: 'bike' })
   } catch (error) {
     console.error('Failed to rent bike:', error)
   }
@@ -35,7 +35,12 @@ const submitForm = async () => {
           <v-text-field v-model="form.numberOfDays" label="Number of days" required></v-text-field>
         </v-col>
         <v-col cols="12" md="6">
-          <v-text-field v-model="form.pricePerDay" label="Price per day" type="number" required></v-text-field>
+          <v-text-field
+            v-model="form.pricePerDay"
+            label="Price per day"
+            type="number"
+            required
+          ></v-text-field>
         </v-col>
         <v-col cols="12" md="6">
           <v-text-field v-model="form.idnp" label="IDNP" required></v-text-field>

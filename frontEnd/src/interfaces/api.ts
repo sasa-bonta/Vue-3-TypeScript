@@ -5,7 +5,6 @@ interface Vehicle {
   brand: string
   model: string
   mileage: number
-  state: { available: boolean }
   engine: string
   fuel: string
   power: number

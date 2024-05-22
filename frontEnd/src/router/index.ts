@@ -1,4 +1,4 @@
-import {createRouter, createWebHistory} from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 import Home from '@/views/Home.vue'
 import Car from '@/views/car/Car.vue'
 import Bike from '@/views/bike/Bike.vue'
@@ -6,8 +6,8 @@ import BikeRent from '@/views/bike/BikeRent.vue'
 import CarRent from '@/views/car/CarRent.vue'
 import CarCreate from '@/views/car/CarCreate.vue'
 import BikeCreate from '@/views/bike/BikeCreate.vue'
-import BikeCreateRent from "@/views/bike/BikeCreateRent.vue";
-import CarCreateRent from "@/views/car/CarCreateRent.vue";
+import BikeCreateRent from '@/views/bike/BikeCreateRent.vue'
+import CarCreateRent from '@/views/car/CarCreateRent.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -58,8 +58,7 @@ const router = createRouter({
       path: '/car/createRent/:id',
       name: 'carCreateRent',
       component: CarCreateRent
-    },
-
+    }
   ]
 })
 

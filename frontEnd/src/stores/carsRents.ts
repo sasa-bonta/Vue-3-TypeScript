@@ -1,7 +1,7 @@
 // stores/carStore.ts
-import {defineStore} from 'pinia'
-import {fetchCarRentList} from '@/api/api'
-import type {CarRent} from '@/interfaces/ws'
+import { defineStore } from 'pinia'
+import { fetchCarRentList } from '@/api/api'
+import type { CarRent } from '@/interfaces/api'
 
 export const useCarRentsStore = defineStore('carRents', {
   state: () => ({

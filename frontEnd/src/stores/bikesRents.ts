@@ -1,6 +1,6 @@
-import {defineStore} from 'pinia'
-import {fetchBikeRentList} from '@/api/api'
-import type {BikeRent} from '@/interfaces/ws'
+import { defineStore } from 'pinia'
+import { fetchBikeRentList } from '@/api/api'
+import type { BikeRent } from '@/interfaces/api'
 
 export const useBikeRentStore = defineStore('bikeRent', {
   state: () => ({

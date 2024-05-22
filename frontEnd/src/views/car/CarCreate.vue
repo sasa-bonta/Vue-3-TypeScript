@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import {reactive} from 'vue'
-import {createCar} from '@/api/api'
-import {useRouter} from 'vue-router'
+import { reactive } from 'vue'
+import { createCar } from '@/api/api'
+import { useRouter } from 'vue-router'
 
 const router = useRouter()
 
@@ -26,7 +26,7 @@ const form = reactive({
 const submitForm = async () => {
   try {
     await createCar(form)
-    await router.push({name: 'car'})
+    await router.push({ name: 'car' })
   } catch (error) {
     console.error('Failed to create car:', error)
   }
@@ -51,10 +51,10 @@ const submitForm = async () => {
         </v-col>
         <v-col cols="12" md="6">
           <v-text-field
-              v-model="form.mileage"
-              label="Mileage"
-              type="number"
-              required
+            v-model="form.mileage"
+            label="Mileage"
+            type="number"
+            required
           ></v-text-field>
         </v-col>
         <v-col cols="12" md="6">

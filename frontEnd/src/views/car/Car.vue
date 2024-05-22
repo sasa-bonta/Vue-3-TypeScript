@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import carIcon from '@/assets/images/car.jpg'
 
-import {computed, type ComputedRef, onMounted, type Ref, ref, type UnwrapRef} from 'vue'
-import {useCarStore} from '@/stores/cars'
-import {storeToRefs} from 'pinia'
-import type {Car} from '@/interfaces/ws'
-import {deleteCarById} from '@/api/api'
+import { computed, type ComputedRef, onMounted, type Ref, ref, type UnwrapRef } from 'vue'
+import { useCarStore } from '@/stores/cars'
+import { storeToRefs } from 'pinia'
+import type { Car } from '@/interfaces/api'
+import { deleteCarById } from '@/api/api'
 
 const carStore = useCarStore()
 
@@ -143,7 +143,7 @@ const deleteCar = async (id: number) => {
                 variant="outlined"
                 class="mb-2 button-border w-100"
                 color="blue"
-                @click="$router.push({name: 'carCreateRent', params: { id: car.id }})"
+                @click="$router.push({ name: 'carCreateRent', params: { id: car.id } })"
                 :disabled="!car.state.available"
               >
                 <h3><b>rent</b></h3>

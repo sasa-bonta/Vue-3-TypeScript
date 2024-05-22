@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import {computed, type ComputedRef, onMounted, ref} from 'vue'
-import {storeToRefs} from 'pinia'
-import {useBikeRentStore} from '@/stores/bikesRents'
-import type {BikeRent} from '@/interfaces/ws'
+import { computed, type ComputedRef, onMounted, ref } from 'vue'
+import { storeToRefs } from 'pinia'
+import { useBikeRentStore } from '@/stores/bikesRents'
+import type { BikeRent } from '@/interfaces/api'
 
 const store = useBikeRentStore()
 const { bikeRents, loading, error } = storeToRefs(store)
