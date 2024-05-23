@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import { RouterView } from 'vue-router'
+import Dashboard from '@/views/Dashboard.vue'
 </script>
 
 <template>
-  <RouterView />
+  <Dashboard />
 </template>
 
 <style scoped>
-.v-container {
+/*.v-container {
   width: 1280px;
-}
+}*/
 </style>
