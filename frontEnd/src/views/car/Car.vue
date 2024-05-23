@@ -99,11 +99,11 @@ const deleteCar = async (id: number) => {
       <v-row>
         <v-col cols="4">
           <v-row>
-            <v-img :width="250" :max-height="250" cover :src="carIcon"></v-img>
+            <v-img :width="250" :max-height="250" cover :src="car.photo"></v-img>
           </v-row>
-          <v-row :class="car.state.available ? 'text-green' : 'text-red'" class="ml-10">
+          <v-row :class="car.available ? 'text-green' : 'text-red'" class="ml-10">
             <h2>
-              <b>{{ car.state.available ? 'Available' : 'Not Available' }}</b>
+              <b>{{ car.available ? 'Available' : 'Not Available' }}</b>
             </h2>
           </v-row>
         </v-col>
@@ -144,7 +144,7 @@ const deleteCar = async (id: number) => {
                 class="mb-2 button-border w-100"
                 color="blue"
                 @click="$router.push({ name: 'carCreateRent', params: { id: car.id } })"
-                :disabled="!car.state.available"
+                :disabled="!car.available"
               >
                 <h3><b>rent</b></h3>
               </v-btn>
@@ -156,7 +156,7 @@ const deleteCar = async (id: number) => {
                 class="mb-2 button-border w-100"
                 color="red"
                 @click="deleteCar(car.id)"
-                :disabled="!car.state.available"
+                :disabled="!car.available"
               >
                 <h3><b>delete</b></h3>
               </v-btn>

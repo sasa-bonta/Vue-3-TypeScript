@@ -101,9 +101,9 @@ const deleteBike = async (id: number) => {
           <v-row>
             <v-img :width="250" :max-height="250" cover :src="bikeIcon"></v-img>
           </v-row>
-          <v-row :class="bike.state.available ? 'text-green' : 'text-red'" class="ml-10">
+          <v-row :class="bike.available ? 'text-green' : 'text-red'" class="ml-10">
             <h2>
-              <b>{{ bike.state.available ? 'Available' : 'Not Available' }}</b>
+              <b>{{ bike.available ? 'Available' : 'Not Available' }}</b>
             </h2>
           </v-row>
         </v-col>
@@ -143,7 +143,7 @@ const deleteBike = async (id: number) => {
                 class="mb-2 button-border w-100"
                 color="blue"
                 @click="$router.push({ name: 'bikeCreateRent', params: { id: bike.id } })"
-                :disabled="!bike.state.available"
+                :disabled="!bike.available"
               >
                 <h3><b>rent</b></h3>
               </v-btn>
@@ -157,7 +157,7 @@ const deleteBike = async (id: number) => {
                 class="mb-2 button-border w-100"
                 color="red"
                 @click="deleteBike(bike.id)"
-                :disabled="!bike.state.available"
+                :disabled="!bike.available"
               >
                 <h3><b>delete</b></h3>
               </v-btn>
