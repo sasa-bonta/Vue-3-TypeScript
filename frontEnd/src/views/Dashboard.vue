@@ -2,31 +2,16 @@
 import { RouterView } from 'vue-router'
 import logo from '@/assets/car-rent-icon.svg'
 import { useDisplay } from 'vuetify'
-import { watch } from 'vue'
 
-const {
-  mobile,
-  smAndDown, // < 960px
-  smAndUp, // > 600px
-  mdAndDown, // < 1280px
-  mdAndUp, // > 960px
-  lgAndDown, // < 1919px
-  lgAndUp, // > 1280px
-  xlAndDown, // < 2559px
-  xlAndUp // > 1920px
-} = useDisplay()
-
-// watch(mobile, (newValue, oldValue) => {
-//   alert(newValue)
-// })
+const { xs, smAndUp } = useDisplay()
 </script>
 
 <template>
   <v-layout class="rounded rounded-md" app>
     <v-app-bar color="grey-darken-3">
-      <v-app-bar-nav-icon v-if="mdAndDown"></v-app-bar-nav-icon>
+      <v-app-bar-nav-icon v-if="xs"></v-app-bar-nav-icon>
 
-      <v-spacer class="w-100" v-if="smAndDown" />
+      <v-app-bar-title v-if="xs">Vehicle for Vacation</v-app-bar-title>
 
       <v-btn
         icon
@@ -40,11 +25,9 @@ const {
         </v-icon>
       </v-btn>
 
-      <v-app-bar-title v-if="smAndUp">Vehicle for Vacation</v-app-bar-title>
+      <v-app-bar-title v-if="!xs">Vehicle for Vacation</v-app-bar-title>
 
-      <v-spacer></v-spacer>
-
-      <div v-if="mdAndUp">
+      <div v-if="smAndUp">
         <v-btn
           variant="tonal"
           :disabled="$route.name === 'cars'"
