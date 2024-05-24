@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useCarsStore } from '@/stores/cars'
-import { onMounted } from 'vue'
+import {onMounted, type Ref, ref} from 'vue'
 import { storeToRefs } from 'pinia'
 
 const store = useCarsStore()
@@ -10,11 +10,13 @@ const { fetchList } = store
 onMounted(() => {
   fetchList()
 })
+
+const show: Ref<boolean> = ref(false)
 </script>
 
 <template>
-  cars:
-  <pre>{{ cars }}</pre>
+cars:
+  {{cars}}
 </template>
 
 <style scoped></style>

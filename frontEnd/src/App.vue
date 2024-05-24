@@ -7,7 +7,5 @@ import Dashboard from '@/components/Dashboard.vue'
 </template>
 
 <style scoped>
-/*.v-container {
-  width: 1280px;
-}*/
+
 </style>
