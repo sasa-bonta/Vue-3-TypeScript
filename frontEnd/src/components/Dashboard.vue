@@ -8,8 +8,6 @@ import Navbar from '@/components/Navbar.vue'
     <Navbar />
 
     <v-main class="d-flex align-center justify-center" style="min-height: 300px; width: 100%">
-      test
-      test
       <RouterView />
     </v-main>
   </v-layout>

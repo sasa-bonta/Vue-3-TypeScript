@@ -16,6 +16,9 @@ const vuetify = createVuetify({
   display: {
     mobileBreakpoint: 'sm'
   },
+  theme: {
+    defaultTheme: 'dark'
+  },
   components,
   directives
 })
