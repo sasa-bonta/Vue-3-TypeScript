@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import {useCarsStore} from '@/stores/cars'
-import {computed, onMounted, reactive, type Ref, ref, watch} from 'vue'
+import {computed, onMounted, reactive} from 'vue'
 import {storeToRefs} from 'pinia'
-import {useDisplay} from 'vuetify'
 
 const store = useCarsStore()
 const {items, loading, error} = storeToRefs(store)
@@ -40,7 +39,7 @@ const list = [
 
                 <v-list-item color="primary" variant="plain">
                   <template v-slot:prepend>
-                    <v-icon icon="mdi-car-shift-pattern"></v-icon>
+                    <v-icon icon="mdi-car-shift-pattern" ></v-icon>
                   </template>
 
                   <v-list-item-title>{{ car.transmission }}</v-list-item-title>
