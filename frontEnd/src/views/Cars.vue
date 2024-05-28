@@ -16,12 +16,6 @@ const cars = computed(() => {
     return reactive({...obj, showDetails: false})
   })
 })
-
-const list = [
-  {text: 'Real-Time', icon: 'mdi-clock'},
-  {text: 'Audience', icon: 'mdi-account'},
-  {text: 'Conversions', icon: 'mdi-flag'}
-]
 </script>
 
 <template>
@@ -30,16 +24,16 @@ const list = [
       <v-card class="mx-auto" width="1280">
         <v-container>
           <v-row>
-            <v-col cols="3">
-              <v-img width="250" height="200" :src="car.photo" cover class="rounded"></v-img>
+            <v-col md="3" sm="6" xs="12">
+              <v-img width="250" height="200" :src="car.photo" cover class="rounded mx-auto"></v-img>
             </v-col>
-            <v-col cols="3">
+            <v-col md="3" sm="6" xs="12">
               <v-list>
                 <v-list-subheader>Technical information</v-list-subheader>
 
                 <v-list-item color="primary" variant="plain">
                   <template v-slot:prepend>
-                    <v-icon icon="mdi-car-shift-pattern" ></v-icon>
+                    <v-icon icon="mdi-car-shift-pattern"></v-icon>
                   </template>
 
                   <v-list-item-title>{{ car.transmission }}</v-list-item-title>
@@ -62,7 +56,7 @@ const list = [
                 </v-list-item>
               </v-list>
             </v-col>
-            <v-col cols="3">
+            <v-col md="3" sm="6" xs="12">
               <v-list>
                 <v-list-subheader>General data</v-list-subheader>
 
@@ -91,7 +85,7 @@ const list = [
                 </v-list-item>
               </v-list>
             </v-col>
-            <v-col cols="3">
+            <v-col md="3" sm="6" xs="12">
               <v-list>
                 <v-list-subheader>Additional information</v-list-subheader>
 
@@ -158,26 +152,53 @@ const list = [
       <v-card class="mx-auto" width="1280">
         <v-container>
           <v-row>
-            <v-col cols="3">
+            <v-col md="3" sm="6" xs="12">
               <v-skeleton-loader
                   width="250"
-                  height="330"
-                  type="card, subtitle, actions"
+                  height="200 "
+                  type="image"
+                  class="mx-auto"
               ></v-skeleton-loader>
             </v-col>
-            <v-col cols="3" v-for="i in 3" :key="i">
+            <v-col md="3" sm="6" xs="12" v-for="i in 3" :key="i">
               <v-skeleton-loader
-                  max-width="300"
+                  width="150"
+                  min-width="100"
+                  max-width="250"
+                  height="30"
                   type="list-item"
               ></v-skeleton-loader>
               <v-skeleton-loader
                   v-for="i in 3" :key="i"
-                  max-width="300"
+                  min-width="100"
+                  max-width="250"
+                  height="57"
                   type="list-item-avatar"
               ></v-skeleton-loader>
             </v-col>
           </v-row>
         </v-container>
+
+        <v-card-title>
+          <v-skeleton-loader
+              height="33"
+              type="heading"
+          ></v-skeleton-loader>
+        </v-card-title>
+
+        <v-card-subtitle>
+          <v-skeleton-loader
+              type="subtitle"
+          ></v-skeleton-loader>
+        </v-card-subtitle>
+
+        <v-card-actions>
+          <v-skeleton-loader
+              width="250"
+              type="actions"
+          ></v-skeleton-loader>
+          <v-spacer></v-spacer>
+        </v-card-actions>
       </v-card>
 
     </v-row>
