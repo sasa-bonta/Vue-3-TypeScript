@@ -1,21 +1,16 @@
 <script setup lang="ts">
-import { reactive } from 'vue'
-import type { Bike, Car } from '@/interfaces/api'
+import {reactive} from 'vue'
+import type {Bike, Car, Vehicle} from '@/interfaces/api'
 
-type WithShowDetails<T> = T & { showDetails: boolean }
+const props = defineProps<{ vehicle: Vehicle }>()
+const vehicle: Vehicle = reactive(props.vehicle)
 
-type ICar = WithShowDetails<Car>
-type IBike = WithShowDetails<Bike>
-
-const props = defineProps<{ vehicle: ICar | IBike; vehicleType: 'car' | 'bike' }>()
-const vehicle: ICar | IBike = reactive(props.vehicle)
-
-const isCar = (vehicle: ICar | IBike): vehicle is ICar => props.vehicleType === 'car'
-const isBike = (vehicle: ICar | IBike): vehicle is IBike => props.vehicleType === 'bike'
+const isCar = (vehicle: Vehicle): vehicle is Car => vehicle.vehicleType === 'car'
+const isBike = (vehicle: Vehicle): vehicle is Bike => vehicle.vehicleType === 'bike'
 </script>
 
 <template>
-  <v-row :key="vehicle.id" class="my-4">
+  <v-row class="my-4">
     <v-card class="mx-auto" width="1280">
       <v-container>
         <v-row>
@@ -31,7 +26,6 @@ const isBike = (vehicle: ICar | IBike): vehicle is IBike => props.vehicleType ==
           <v-col md="3" sm="6" xs="12">
             <v-list>
               <v-list-subheader>Technical information</v-list-subheader>
-
               <v-list-item v-if="isCar(vehicle)" color="primary" variant="plain">
                 <template v-slot:prepend>
                   <v-icon icon="mdi-car-shift-pattern"></v-icon>
@@ -39,7 +33,6 @@ const isBike = (vehicle: ICar | IBike): vehicle is IBike => props.vehicleType ==
                 <v-list-item-title>{{ vehicle.transmission }}</v-list-item-title>
                 <v-tooltip activator="parent" location="top">Transmission </v-tooltip>
               </v-list-item>
-
               <v-list-item v-else-if="isBike(vehicle)" color="primary" variant="plain">
                 <template v-slot:prepend>
                   <v-icon icon="mdi-road-variant"></v-icon>
@@ -47,7 +40,6 @@ const isBike = (vehicle: ICar | IBike): vehicle is IBike => props.vehicleType ==
                 <v-list-item-title>{{ vehicle.streetLegal ? 'Yes' : 'No' }}</v-list-item-title>
                 <v-tooltip activator="parent" location="top">Street legal </v-tooltip>
               </v-list-item>
-
               <v-list-item color="primary" variant="plain">
                 <template v-slot:prepend>
                   <v-icon icon="mdi-engine"></v-icon>
@@ -55,7 +47,6 @@ const isBike = (vehicle: ICar | IBike): vehicle is IBike => props.vehicleType ==
                 <v-list-item-title>{{ vehicle.power }} HP</v-list-item-title>
                 <v-tooltip activator="parent" location="top">Power </v-tooltip>
               </v-list-item>
-
               <v-list-item color="primary" variant="plain">
                 <template v-slot:prepend>
                   <v-icon icon="mdi-car-side"></v-icon>
@@ -65,10 +56,10 @@ const isBike = (vehicle: ICar | IBike): vehicle is IBike => props.vehicleType ==
               </v-list-item>
             </v-list>
           </v-col>
+
           <v-col md="3" sm="6" xs="12">
             <v-list>
               <v-list-subheader>General data</v-list-subheader>
-
               <v-list-item color="primary" variant="plain">
                 <template v-slot:prepend>
                   <v-icon icon="mdi-id-card"></v-icon>
@@ -76,7 +67,6 @@ const isBike = (vehicle: ICar | IBike): vehicle is IBike => props.vehicleType ==
                 <v-list-item-title>{{ vehicle.vin }}</v-list-item-title>
                 <v-tooltip activator="parent" location="top">Plate number </v-tooltip>
               </v-list-item>
-
               <v-list-item color="primary" variant="plain">
                 <template v-slot:prepend>
                   <v-icon icon="mdi-counter"></v-icon>
@@ -84,7 +74,6 @@ const isBike = (vehicle: ICar | IBike): vehicle is IBike => props.vehicleType ==
                 <v-list-item-title>{{ vehicle.mileage }} KM</v-list-item-title>
                 <v-tooltip activator="parent" location="top">Mileage </v-tooltip>
               </v-list-item>
-
               <v-list-item color="primary" variant="plain">
                 <template v-slot:prepend>
                   <v-icon icon="mdi-fuel"></v-icon>
@@ -94,10 +83,10 @@ const isBike = (vehicle: ICar | IBike): vehicle is IBike => props.vehicleType ==
               </v-list-item>
             </v-list>
           </v-col>
+
           <v-col md="3" sm="6" xs="12">
             <v-list>
               <v-list-subheader>Additional information</v-list-subheader>
-
               <v-list-item v-if="isCar(vehicle)" color="primary" variant="plain">
                 <template v-slot:prepend>
                   <v-icon icon="mdi-seat-passenger"></v-icon>
@@ -105,7 +94,6 @@ const isBike = (vehicle: ICar | IBike): vehicle is IBike => props.vehicleType ==
                 <v-list-item-title>{{ vehicle.seats }}</v-list-item-title>
                 <v-tooltip activator="parent" location="top">Number of seats </v-tooltip>
               </v-list-item>
-
               <v-list-item v-else-if="isBike(vehicle)" color="primary" variant="plain">
                 <template v-slot:prepend>
                   <v-icon icon="mdi-seat-passenger"></v-icon>
@@ -113,7 +101,6 @@ const isBike = (vehicle: ICar | IBike): vehicle is IBike => props.vehicleType ==
                 <v-list-item-title>{{ vehicle.backSeat ? 'Yes' : 'No' }}</v-list-item-title>
                 <v-tooltip activator="parent" location="top">Back seat </v-tooltip>
               </v-list-item>
-
               <v-list-item color="primary" variant="plain">
                 <template v-slot:prepend>
                   <v-icon icon="mdi-calendar"></v-icon>
@@ -121,7 +108,6 @@ const isBike = (vehicle: ICar | IBike): vehicle is IBike => props.vehicleType ==
                 <v-list-item-title>{{ vehicle.year }}</v-list-item-title>
                 <v-tooltip activator="parent" location="top">Year </v-tooltip>
               </v-list-item>
-
               <v-list-item color="primary" variant="plain">
                 <template v-slot:prepend>
                   <v-icon icon="mdi-cash"></v-icon>
@@ -146,7 +132,7 @@ const isBike = (vehicle: ICar | IBike): vehicle is IBike => props.vehicleType ==
           @click="
             $router.push({
               name: 'createRent',
-              params: { vehicleType: vehicleType, id: vehicle.id }
+              params: { vehicleType: vehicle.vehicleType, id: vehicle.id }
             })
           "
         ></v-btn>

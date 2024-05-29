@@ -13,11 +13,13 @@ interface Vehicle {
   rent: boolean
   price: number
   deleted: boolean
-  transmission: string
   available: boolean
+  showDetails?: boolean
+  vehicleType?: string
 }
 
 interface Car extends Vehicle {
+  transmission: string
   drivetrain: string
   seats: number
 }
@@ -36,6 +38,8 @@ interface Rent {
   idnp: string
   tel: string
   email: string
+  type?: string
+  showDetails?: boolean
 }
 
 interface CarRent extends Rent {
@@ -46,4 +50,4 @@ interface BikeRent extends Rent {
   bike: Bike
 }
 
-export type { Car, Bike, CarRent, BikeRent }
+export type { Vehicle, Car, Bike, Rent, CarRent, BikeRent }

@@ -1,21 +1,22 @@
 <script setup lang="ts">
 import {useRoute, useRouter} from 'vue-router'
 import {computed, reactive} from 'vue'
-import CreateRentForm from "@/components/CreateRentForm.vue";
+import CreateRentForm from '@/components/CreateRentForm.vue'
+import {createBikeRent, createCarRent} from '@/api/api'
 
 const route = useRoute()
 const vehicleType = computed(() => route.params.vehicleType)
 const id = computed(() => route.params.id)
 
-let form: CarRentForm | BikeRentForm;
+let form: CarRentForm | BikeRentForm
 
 if (vehicleType.value === 'car') {
   form = reactive<CarRentForm>({
-    car: {id: Number(id.value)}
-  } as CarRentForm);
+    car: { id: Number(id.value) }
+  } as CarRentForm)
 } else if (vehicleType.value === 'bike') {
   form = reactive<BikeRentForm>({
-    bike: {id: Number(id.value)}
+    bike: { id: Number(id.value) }
   } as BikeRentForm)
 }
 
@@ -23,13 +24,14 @@ const router = useRouter()
 
 const submitForm = async () => {
   try {
-    form.idnp = `${form.idnp}, ${form.firstName}, ${form.lastName}`
+    form.idnp = `${form.firstName} ${form.lastName}, ${form.idnp}`
     if (vehicleType.value === 'car') {
-      // await createCarRent(form)
+      await createCarRent(form as CarRentForm)
+      await router.push({ name: 'cars' })
     } else if (vehicleType.value === 'bike') {
-      // await createBikeRent(form)
+      await createBikeRent(form as BikeRentForm)
+      await router.push({ name: 'bikes' })
     }
-    await router.push({name: 'cars'})
   } catch (error) {
     console.error('Failed to rent car:', error)
   }
@@ -38,7 +40,7 @@ const submitForm = async () => {
 
 <template>
   <v-container>
-    <CreateRentForm :form @submitForm="submitForm"/>
+    <CreateRentForm :form @submitForm="submitForm" />
   </v-container>
 </template>
 

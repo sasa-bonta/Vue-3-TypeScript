@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import {useBikesStore} from '@/stores/bikes'
+import {useRentsStore} from '@/stores/rents'
 import {storeToRefs} from 'pinia'
 import {computed, onMounted, reactive} from 'vue'
-import VehicleLoader from '@/components/VehicleLoader.vue'
-import Vehicle from '@/components/Vehicle.vue'
+import Rent from '@/components/Rent.vue'
+import RentLoader from "@/components/RentLoader.vue";
 
-const store = useBikesStore()
+const store = useRentsStore()
 const { items, loading, error } = storeToRefs(store)
 const { fetchList } = store
 
@@ -13,21 +13,21 @@ onMounted(() => {
   fetchList()
 })
 
-const bikes = computed(() => {
+const rents = computed(() => {
   return items.value.map((obj) => {
-    return reactive({ ...obj, vehicleType: 'car', showDetails: false })
+    return reactive({ ...obj, showDetails: false })
   })
 })
 </script>
 
 <template>
   <v-container v-if="!loading">
-    <Vehicle v-for="bike in bikes" :key="bike.id" :vehicle="bike" />
+    <Rent v-for="rent in rents" :key="rent.type! + rent.id" :rent="rent" />
   </v-container>
 
-  <v-container v-else>
+  <v-container v-else-if="loading">
     <v-row v-for="n in 3" :key="n" class="my-4">
-      <VehicleLoader />
+      <RentLoader />
     </v-row>
   </v-container>
 </template>

@@ -11,10 +11,10 @@ const form = props.form
       </v-col>
       <v-col cols="12" md="6">
         <v-text-field
-            v-model="form.pricePerDay"
-            label="Price per day"
-            type="number"
-            required
+          v-model="form.pricePerDay"
+          label="Price per day"
+          type="number"
+          required
         ></v-text-field>
       </v-col>
       <v-col cols="12" md="6">
@@ -28,6 +28,9 @@ const form = props.form
       </v-col>
       <v-col cols="12" md="6">
         <v-text-field v-model="form.tel" label="Tel" required></v-text-field>
+      </v-col>
+      <v-col cols="12" md="6">
+        <v-text-field v-model="form.email" label="Email" required></v-text-field>
       </v-col>
       <v-col cols="12">
         <v-btn @click="$emit('submitForm', form)" color="primary"> Submit</v-btn>
