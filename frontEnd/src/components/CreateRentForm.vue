@@ -1,19 +1,6 @@
 <script setup lang="ts">
-import { useRouter } from 'vue-router'
-
 const props = defineProps<{ form: CarRentForm | BikeRentForm }>()
 const form = props.form
-
-const router = useRouter()
-
-const submitForm = async () => {
-  try {
-    // await createCarRent(form)
-    await router.push({ name: 'cars' })
-  } catch (error) {
-    console.error('Failed to rent car:', error)
-  }
-}
 </script>
 
 <template>
@@ -24,10 +11,10 @@ const submitForm = async () => {
       </v-col>
       <v-col cols="12" md="6">
         <v-text-field
-          v-model="form.pricePerDay"
-          label="Price per day"
-          type="number"
-          required
+            v-model="form.pricePerDay"
+            label="Price per day"
+            type="number"
+            required
         ></v-text-field>
       </v-col>
       <v-col cols="12" md="6">
@@ -43,7 +30,7 @@ const submitForm = async () => {
         <v-text-field v-model="form.tel" label="Tel" required></v-text-field>
       </v-col>
       <v-col cols="12">
-        <v-btn @click="submitForm" color="primary"> Submit</v-btn>
+        <v-btn @click="$emit('submitForm', form)" color="primary"> Submit</v-btn>
       </v-col>
     </v-row>
   </v-form>
