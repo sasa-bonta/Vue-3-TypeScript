@@ -44,7 +44,7 @@ const isBike = (vehicle: ICar | IBike): vehicle is IBike => props.vehicleType ==
                 <template v-slot:prepend>
                   <v-icon icon="mdi-road-variant"></v-icon>
                 </template>
-                <v-list-item-title>{{ vehicle.streetLegal }}</v-list-item-title>
+                <v-list-item-title>{{ vehicle.streetLegal ? 'Yes' : 'No' }}</v-list-item-title>
                 <v-tooltip activator="parent" location="top">Street legal </v-tooltip>
               </v-list-item>
 
@@ -110,7 +110,7 @@ const isBike = (vehicle: ICar | IBike): vehicle is IBike => props.vehicleType ==
                 <template v-slot:prepend>
                   <v-icon icon="mdi-seat-passenger"></v-icon>
                 </template>
-                <v-list-item-title>{{ vehicle.backSeat }}</v-list-item-title>
+                <v-list-item-title>{{ vehicle.backSeat ? 'Yes' : 'No' }}</v-list-item-title>
                 <v-tooltip activator="parent" location="top">Back seat </v-tooltip>
               </v-list-item>
 
@@ -139,9 +139,8 @@ const isBike = (vehicle: ICar | IBike): vehicle is IBike => props.vehicleType ==
       <v-card-subtitle> {{ vehicle.available ? 'Available' : 'Not available' }}</v-card-subtitle>
 
       <v-card-actions>
-        <v-btn color="orange-lighten-2" text="Rent now"></v-btn>
-
-        <v-btn color="deep-purple-lighten-2" text="View rent history"></v-btn>
+        <v-btn variant="tonal" color="orange-lighten-2" text="Rent now"></v-btn>
+        <v-btn variant="tonal" color="deep-purple-lighten-2" text="View rent history"></v-btn>
 
         <v-spacer></v-spacer>
 
