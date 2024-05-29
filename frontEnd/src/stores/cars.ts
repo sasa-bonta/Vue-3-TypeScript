@@ -2,10 +2,7 @@ import { defineStore } from 'pinia'
 import { type Ref, ref } from 'vue'
 import type { Car } from '@/interfaces/api'
 import { fetchCarList } from '@/api/api'
-
-const sleep = (ms: number): Promise<void> => {
-  return new Promise((resolve) => setTimeout(resolve, ms))
-}
+import { sleep } from '@/services'
 
 export const useCarsStore = defineStore('cars', () => {
   const items: Ref<Array<Car>> = ref([])

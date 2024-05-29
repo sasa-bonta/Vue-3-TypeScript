@@ -1,11 +1,13 @@
 <script setup lang="ts">
-import {useCarsStore} from '@/stores/cars'
-import {computed, onMounted, reactive} from 'vue'
-import {storeToRefs} from 'pinia'
+import { useCarsStore } from '@/stores/cars'
+import { computed, onMounted, reactive } from 'vue'
+import { storeToRefs } from 'pinia'
+import VehicleLoader from '@/components/VehicleLoader.vue'
+import Vehicle from '@/components/Vehicle.vue'
 
 const store = useCarsStore()
-const {items, loading, error} = storeToRefs(store)
-const {fetchList} = store
+const { items, loading, error } = storeToRefs(store)
+const { fetchList } = store
 
 onMounted(() => {
   fetchList()
@@ -13,194 +15,19 @@ onMounted(() => {
 
 const cars = computed(() => {
   return items.value.map((obj) => {
-    return reactive({...obj, showDetails: false})
+    return reactive({ ...obj, showDetails: false })
   })
 })
 </script>
 
 <template>
   <v-container v-if="!loading">
-    <v-row v-for="car in cars" :key="car.id" class="my-4">
-      <v-card class="mx-auto" width="1280">
-        <v-container>
-          <v-row>
-            <v-col md="3" sm="6" xs="12">
-              <v-img width="250" height="200" :src="car.photo" cover class="rounded mx-auto"></v-img>
-            </v-col>
-            <v-col md="3" sm="6" xs="12">
-              <v-list>
-                <v-list-subheader>Technical information</v-list-subheader>
-
-                <v-list-item color="primary" variant="plain">
-                  <template v-slot:prepend>
-                    <v-icon icon="mdi-car-shift-pattern"></v-icon>
-                  </template>
-
-                  <v-list-item-title>{{ car.transmission }}</v-list-item-title>
-                </v-list-item>
-
-                <v-list-item color="primary" variant="plain">
-                  <template v-slot:prepend>
-                    <v-icon icon="mdi-engine"></v-icon>
-                  </template>
-
-                  <v-list-item-title>{{ car.power }} HP</v-list-item-title>
-                </v-list-item>
-
-                <v-list-item color="primary" variant="plain">
-                  <template v-slot:prepend>
-                    <v-icon icon="mdi-car-side"></v-icon>
-                  </template>
-
-                  <v-list-item-title>{{ car.type }}</v-list-item-title>
-                </v-list-item>
-              </v-list>
-            </v-col>
-            <v-col md="3" sm="6" xs="12">
-              <v-list>
-                <v-list-subheader>General data</v-list-subheader>
-
-                <v-list-item color="primary" variant="plain">
-                  <template v-slot:prepend>
-                    <v-icon icon="mdi-id-card"></v-icon>
-                  </template>
-
-                  <v-list-item-title>{{ car.vin }}</v-list-item-title>
-                </v-list-item>
-
-                <v-list-item color="primary" variant="plain">
-                  <template v-slot:prepend>
-                    <v-icon icon="mdi-counter"></v-icon>
-                  </template>
-
-                  <v-list-item-title>{{ car.mileage }} KM</v-list-item-title>
-                </v-list-item>
-
-                <v-list-item color="primary" variant="plain">
-                  <template v-slot:prepend>
-                    <v-icon icon="mdi-fuel"></v-icon>
-                  </template>
-
-                  <v-list-item-title>{{ car.fuel }}</v-list-item-title>
-                </v-list-item>
-              </v-list>
-            </v-col>
-            <v-col md="3" sm="6" xs="12">
-              <v-list>
-                <v-list-subheader>Additional information</v-list-subheader>
-
-                <v-list-item color="primary" variant="plain">
-                  <template v-slot:prepend>
-                    <v-icon icon="mdi-seat-passenger"></v-icon>
-                  </template>
-
-                  <v-list-item-title>{{ car.seats }}</v-list-item-title>
-                </v-list-item>
-
-                <v-list-item color="primary" variant="plain">
-                  <template v-slot:prepend>
-                    <v-icon icon="mdi-calendar"></v-icon>
-                  </template>
-
-                  <v-list-item-title>{{ car.year }}</v-list-item-title>
-                </v-list-item>
-
-                <v-list-item color="primary" variant="plain">
-                  <template v-slot:prepend>
-                    <v-icon icon="mdi-cash"></v-icon>
-                  </template>
-
-                  <v-list-item-title>{{ car.price }} €</v-list-item-title>
-                </v-list-item>
-              </v-list>
-            </v-col>
-          </v-row>
-        </v-container>
-
-        <v-card-title> {{ car.brand }} {{ car.model }}</v-card-title>
-
-        <v-card-subtitle> 1,000 miles of wonder</v-card-subtitle>
-
-        <v-card-actions>
-          <v-btn color="orange-lighten-2" text="Rent now"></v-btn>
-
-          <v-btn color="deep-purple-lighten-2" text="View rent history"></v-btn>
-
-          <v-spacer></v-spacer>
-
-          <v-btn
-              :icon="car.showDetails ? 'mdi-chevron-up' : 'mdi-chevron-down'"
-              @click="car.showDetails = !car.showDetails"
-          ></v-btn>
-        </v-card-actions>
-
-        <v-expand-transition>
-          <div v-show="car.showDetails">
-            <v-divider></v-divider>
-
-            <v-card-text>
-              <pre>{{ car }}</pre>
-            </v-card-text>
-          </div>
-        </v-expand-transition>
-      </v-card>
-    </v-row>
+    <Vehicle v-for="car in cars" :key="car.id" :vehicle="car" vehicleType="car" />
   </v-container>
 
   <v-container v-else>
     <v-row v-for="n in 3" :key="n" class="my-4">
-      <v-card class="mx-auto" width="1280">
-        <v-container>
-          <v-row>
-            <v-col md="3" sm="6" xs="12">
-              <v-skeleton-loader
-                  width="250"
-                  height="200 "
-                  type="image"
-                  class="mx-auto"
-              ></v-skeleton-loader>
-            </v-col>
-            <v-col md="3" sm="6" xs="12" v-for="i in 3" :key="i">
-              <v-skeleton-loader
-                  width="150"
-                  min-width="100"
-                  max-width="250"
-                  height="30"
-                  type="list-item"
-              ></v-skeleton-loader>
-              <v-skeleton-loader
-                  v-for="i in 3" :key="i"
-                  min-width="100"
-                  max-width="250"
-                  height="57"
-                  type="list-item-avatar"
-              ></v-skeleton-loader>
-            </v-col>
-          </v-row>
-        </v-container>
-
-        <v-card-title>
-          <v-skeleton-loader
-              height="33"
-              type="heading"
-          ></v-skeleton-loader>
-        </v-card-title>
-
-        <v-card-subtitle>
-          <v-skeleton-loader
-              type="subtitle"
-          ></v-skeleton-loader>
-        </v-card-subtitle>
-
-        <v-card-actions>
-          <v-skeleton-loader
-              width="250"
-              type="actions"
-          ></v-skeleton-loader>
-          <v-spacer></v-spacer>
-        </v-card-actions>
-      </v-card>
-
+      <VehicleLoader />
     </v-row>
   </v-container>
 </template>

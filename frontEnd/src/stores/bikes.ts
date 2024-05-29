@@ -1,20 +1,28 @@
 import { defineStore } from 'pinia'
 import { fetchBikeList } from '@/api/api'
 import type { Bike } from '@/interfaces/api'
+import { sleep } from '@/services'
 
-export const useBikeStore = defineStore('bike', {
-  state: () => ({
-    bikes: [] as Array<Bike>,
+interface State {
+  items: Bike[]
+  loading: boolean
+  error: string | null
+}
+
+export const useBikesStore = defineStore('bike', {
+  state: (): State => ({
+    items: [],
     loading: false,
-    error: null as string | null
+    error: null
   }),
   actions: {
-    async fetchBikeList() {
+    async fetchList() {
       this.loading = true
       this.error = null
       try {
+        await sleep(1000)
         const response = await fetchBikeList()
-        this.bikes = response.data
+        this.items = response.data
       } catch (err: any) {
         this.error = err.message || 'Failed to fetch bikes'
       } finally {
