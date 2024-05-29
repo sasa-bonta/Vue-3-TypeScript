@@ -31,6 +31,8 @@ interface RentForm {
   idnp: string
   tel: string
   email: string
+  firstName: string
+  lastName: string
 }
 
 interface CarRentForm extends RentForm {

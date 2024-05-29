@@ -139,7 +139,17 @@ const isBike = (vehicle: ICar | IBike): vehicle is IBike => props.vehicleType ==
       <v-card-subtitle> {{ vehicle.available ? 'Available' : 'Not available' }}</v-card-subtitle>
 
       <v-card-actions>
-        <v-btn variant="tonal" color="orange-lighten-2" text="Rent now"></v-btn>
+        <v-btn
+          variant="tonal"
+          color="orange-lighten-2"
+          text="Rent now"
+          @click="
+            $router.push({
+              name: 'createRent',
+              params: { vehicleType: vehicleType, id: vehicle.id }
+            })
+          "
+        ></v-btn>
         <v-btn variant="tonal" color="deep-purple-lighten-2" text="View rent history"></v-btn>
 
         <v-spacer></v-spacer>
