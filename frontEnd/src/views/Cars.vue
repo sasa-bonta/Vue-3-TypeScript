@@ -72,7 +72,7 @@ const filteredAndSortedCars = computed(() => {
       </v-col>
 
       <v-col md="3" sm="6" cols="12">
-        <v-text-field v-model="plateNumber" label="Plate number"></v-text-field>
+        <v-text-field v-model="plateNumber" label="Number plate"></v-text-field>
       </v-col>
 
       <v-col md="3" sm="6" cols="12">
@@ -99,6 +99,17 @@ const filteredAndSortedCars = computed(() => {
         <VehicleLoader />
       </v-row>
     </div>
+
+    <v-row class="my-6 bg-grey-darken-4 justify-center">
+      <v-col cols="auto" class="d-flex justify-center">
+        <v-btn
+          variant="tonal"
+          color="teal-lighten-4"
+          text="Create new car"
+          @click="$router.push({ name: 'createCar' })"
+        />
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 

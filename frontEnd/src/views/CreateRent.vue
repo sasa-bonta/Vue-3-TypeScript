@@ -3,6 +3,7 @@ import {useRoute, useRouter} from 'vue-router'
 import {computed, reactive} from 'vue'
 import CreateRentForm from '@/components/CreateRentForm.vue'
 import {createBikeRent, createCarRent} from '@/api/api'
+import mitt from 'mitt'
 
 const route = useRoute()
 const vehicleType = computed(() => route.params.vehicleType)
@@ -21,6 +22,7 @@ if (vehicleType.value === 'car') {
 }
 
 const router = useRouter()
+const emitter = mitt()
 
 const submitForm = async () => {
   try {
@@ -32,8 +34,9 @@ const submitForm = async () => {
       await createBikeRent(form as BikeRentForm)
       await router.push({ name: 'bikes' })
     }
+    emitter.emit('notify-success', 'Rent created')
   } catch (error) {
-    console.error('Failed to rent car:', error)
+    emitter.emit('notify-error', 'Failed to create rent: ' + error)
   }
 }
 </script>

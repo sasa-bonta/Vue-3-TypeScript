@@ -65,7 +65,7 @@ const isBike = (vehicle: Vehicle): vehicle is Bike => vehicle.vehicleType === 'b
                   <v-icon icon="mdi-id-card"></v-icon>
                 </template>
                 <v-list-item-title>{{ vehicle.vin }}</v-list-item-title>
-                <v-tooltip activator="parent" location="top">Plate number</v-tooltip>
+                <v-tooltip activator="parent" location="top">Number plate</v-tooltip>
               </v-list-item>
               <v-list-item color="primary" variant="plain">
                 <template v-slot:prepend>
@@ -137,7 +137,7 @@ const isBike = (vehicle: Vehicle): vehicle is Bike => vehicle.vehicleType === 'b
             })
           "
         ></v-btn>
-        <v-btn variant="tonal" color="deep-purple-lighten-2" text="View rent history"></v-btn>
+        <!--        <v-btn variant="tonal" color="deep-purple-lighten-2" text="View rent history"></v-btn>-->
 
         <v-spacer></v-spacer>
 

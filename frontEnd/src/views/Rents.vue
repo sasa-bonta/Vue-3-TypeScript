@@ -49,8 +49,8 @@ const filteredAndSortedRents = computed(() => {
     )
   }
 
-  if (showEnded.value) {
-    filteredRents = filteredRents.filter((rent) => rent.vehicle.available)
+  if (!showEnded.value) {
+    filteredRents = filteredRents.filter((rent) => !rent.finishDate)
   }
 
   if (sortOrder.value === sortOptions[0]) {
@@ -83,7 +83,7 @@ const filteredAndSortedRents = computed(() => {
       </v-col>
 
       <v-col md="3" sm="6" cols="12">
-        <v-text-field v-model="plateNumber" label="Plate number"></v-text-field>
+        <v-text-field v-model="plateNumber" label="Number plate"></v-text-field>
       </v-col>
 
       <v-col md="3" sm="6" cols="12">

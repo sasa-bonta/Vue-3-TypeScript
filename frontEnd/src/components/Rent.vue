@@ -1,12 +1,36 @@
 <script setup lang="ts">
 import {reactive} from 'vue'
 import type {BikeRent, CarRent, Rent} from '@/interfaces/api'
+import {endRent} from '@/api/api'
+import {useRentsStore} from '@/stores/rents'
+import mitt from "mitt";
 
 const props = defineProps<{ rent: Rent }>()
 const rent: Rent = reactive(props.rent)
 
 const isCarRent = (rent: Rent): rent is CarRent => rent.type === 'car'
 const isBikeRent = (rent: Rent): rent is BikeRent => rent.type === 'bike'
+
+const store = useRentsStore()
+const { fetchList } = store
+
+const emitter = mitt()
+
+const endRentAction = async () => {
+  const isConfirmed = confirm('Are you sure you want to end this rent?')
+
+  if (!isConfirmed) {
+    return
+  }
+
+  try {
+    await endRent(rent.type!, rent.id)
+    await fetchList()
+    emitter.emit('notify-success', 'Rent ended')
+  } catch (error) {
+    emitter.emit('notify-error', 'Filed to delete rent: ' + error)
+  }
+}
 </script>
 
 <template>
@@ -99,7 +123,7 @@ const isBikeRent = (rent: Rent): rent is BikeRent => rent.type === 'bike'
                 <v-list-item-title v-else-if="isBikeRent(rent)"
                   >{{ rent.bike.vin }}
                 </v-list-item-title>
-                <v-tooltip activator="parent" location="top">Plate number</v-tooltip>
+                <v-tooltip activator="parent" location="top">Number plate</v-tooltip>
               </v-list-item>
               <v-list-item color="primary" variant="plain">
                 <template v-slot:prepend>
@@ -133,8 +157,13 @@ const isBikeRent = (rent: Rent): rent is BikeRent => rent.type === 'bike'
       <v-card-subtitle> {{ rent.tel }} {{ rent.email }}</v-card-subtitle>
 
       <v-card-actions>
-        <v-btn variant="tonal" color="orange-lighten-2" text="End rent"></v-btn>
-        <!--        <v-btn variant="tonal" color="deep-purple-lighten-2" text="View rent history"></v-btn>-->
+        <v-btn
+          variant="tonal"
+          color="orange-lighten-2"
+          text="End rent"
+          @click="endRentAction"
+          :disabled="!!rent.finishDate"
+        />
 
         <v-spacer></v-spacer>
 
