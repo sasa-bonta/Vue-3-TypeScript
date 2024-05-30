@@ -22,11 +22,13 @@ export const useRentsStore = defineStore('rents', () => {
 
       const mappedCarRents: CarRent[] = carRents.data.map((carRent: CarRent) => ({
         ...carRent,
-        type: 'car'
+        type: 'car',
+        vehicle: carRent.car
       }))
       const mappedBikeRents: BikeRent[] = bikeRents.data.map((bikeRent: BikeRent) => ({
         ...bikeRent,
-        type: 'bike'
+        type: 'bike',
+        vehicle: bikeRent.bike
       }))
       items.value = [...mappedCarRents, ...mappedBikeRents]
     } catch (err: any) {

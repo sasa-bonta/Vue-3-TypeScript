@@ -14,7 +14,7 @@ const isBikeRent = (rent: Rent): rent is BikeRent => rent.type === 'bike'
     <v-card class="mx-auto" width="1280">
       <v-container>
         <v-row>
-          <v-col md="4" sm="6" xs="12">
+          <v-col md="3" sm="6" xs="12">
             <v-img
               v-if="isCarRent(rent)"
               width="250"
@@ -32,7 +32,8 @@ const isBikeRent = (rent: Rent): rent is BikeRent => rent.type === 'bike'
               class="rounded mx-auto"
             ></v-img>
           </v-col>
-          <v-col md="4" sm="6" xs="12">
+
+          <v-col md="3" sm="6" xs="12">
             <v-list>
               <v-list-subheader>Rent information</v-list-subheader>
 
@@ -45,10 +46,10 @@ const isBikeRent = (rent: Rent): rent is BikeRent => rent.type === 'bike'
               </v-list-item>
               <v-list-item color="primary" variant="plain">
                 <template v-slot:prepend>
-                  <v-icon icon="mdi-calendar"></v-icon>
+                  <v-icon icon="mdi-timer-cancel-outline"></v-icon>
                 </template>
-                <v-list-item-title>{{ rent.numberOfDays }} days</v-list-item-title>
-                <v-tooltip activator="parent" location="top">Number of days</v-tooltip>
+                <v-list-item-title>{{ rent.finishDate ?? '-' }}</v-list-item-title>
+                <v-tooltip activator="parent" location="top">End date</v-tooltip>
               </v-list-item>
               <v-list-item color="primary" variant="plain">
                 <template v-slot:prepend>
@@ -59,7 +60,35 @@ const isBikeRent = (rent: Rent): rent is BikeRent => rent.type === 'bike'
               </v-list-item>
             </v-list>
           </v-col>
-          <v-col md="4" sm="6" xs="12">
+
+          <v-col md="3" sm="6" xs="12">
+            <v-list>
+              <v-list-subheader>Vehicle information</v-list-subheader>
+              <v-list-item color="primary" variant="plain">
+                <template v-slot:prepend>
+                  <v-icon icon="mdi-crown-circle"></v-icon>
+                </template>
+                <v-list-item-title>{{ rent.vehicle.brand }}</v-list-item-title>
+                <v-tooltip activator="parent" location="top">Brand</v-tooltip>
+              </v-list-item>
+              <v-list-item color="primary" variant="plain">
+                <template v-slot:prepend>
+                  <v-icon icon="mdi-text-recognition"></v-icon>
+                </template>
+                <v-list-item-title>{{ rent.vehicle.model }}</v-list-item-title>
+                <v-tooltip activator="parent" location="top">Model</v-tooltip>
+              </v-list-item>
+              <v-list-item color="primary" variant="plain">
+                <template v-slot:prepend>
+                  <v-icon icon="mdi-cake"></v-icon>
+                </template>
+                <v-list-item-title>{{ rent.vehicle.year }}</v-list-item-title>
+                <v-tooltip activator="parent" location="top">Year</v-tooltip>
+              </v-list-item>
+            </v-list>
+          </v-col>
+
+          <v-col md="3" sm="6" xs="12">
             <v-list>
               <v-list-subheader>Vehicle information</v-list-subheader>
               <v-list-item color="primary" variant="plain">
@@ -67,9 +96,9 @@ const isBikeRent = (rent: Rent): rent is BikeRent => rent.type === 'bike'
                   <v-icon icon="mdi-id-card"></v-icon>
                 </template>
                 <v-list-item-title v-if="isCarRent(rent)">{{ rent.car.vin }}</v-list-item-title>
-                <v-list-item-title v-else-if="isBikeRent(rent)">{{
-                  rent.bike.vin
-                }}</v-list-item-title>
+                <v-list-item-title v-else-if="isBikeRent(rent)"
+                  >{{ rent.bike.vin }}
+                </v-list-item-title>
                 <v-tooltip activator="parent" location="top">Plate number</v-tooltip>
               </v-list-item>
               <v-list-item color="primary" variant="plain">
@@ -77,11 +106,11 @@ const isBikeRent = (rent: Rent): rent is BikeRent => rent.type === 'bike'
                   <v-icon icon="mdi-counter"></v-icon>
                 </template>
                 <v-list-item-title v-if="isCarRent(rent)"
-                  >{{ rent.car.mileage }} KM</v-list-item-title
-                >
+                  >{{ rent.car.mileage }} KM
+                </v-list-item-title>
                 <v-list-item-title v-else-if="isBikeRent(rent)"
-                  >{{ rent.bike.mileage }} KM</v-list-item-title
-                >
+                  >{{ rent.bike.mileage }} KM
+                </v-list-item-title>
                 <v-tooltip activator="parent" location="top">Mileage</v-tooltip>
               </v-list-item>
               <v-list-item color="primary" variant="plain">
@@ -89,9 +118,9 @@ const isBikeRent = (rent: Rent): rent is BikeRent => rent.type === 'bike'
                   <v-icon icon="mdi-fuel"></v-icon>
                 </template>
                 <v-list-item-title v-if="isCarRent(rent)">{{ rent.car.fuel }}</v-list-item-title>
-                <v-list-item-title v-else-if="isBikeRent(rent)">{{
-                  rent.bike.fuel
-                }}</v-list-item-title>
+                <v-list-item-title v-else-if="isBikeRent(rent)"
+                  >{{ rent.bike.fuel }}
+                </v-list-item-title>
                 <v-tooltip activator="parent" location="top">Fuel type</v-tooltip>
               </v-list-item>
             </v-list>

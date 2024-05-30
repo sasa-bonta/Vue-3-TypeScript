@@ -31,28 +31,28 @@ const isBike = (vehicle: Vehicle): vehicle is Bike => vehicle.vehicleType === 'b
                   <v-icon icon="mdi-car-shift-pattern"></v-icon>
                 </template>
                 <v-list-item-title>{{ vehicle.transmission }}</v-list-item-title>
-                <v-tooltip activator="parent" location="top">Transmission </v-tooltip>
+                <v-tooltip activator="parent" location="top">Transmission</v-tooltip>
               </v-list-item>
               <v-list-item v-else-if="isBike(vehicle)" color="primary" variant="plain">
                 <template v-slot:prepend>
                   <v-icon icon="mdi-road-variant"></v-icon>
                 </template>
                 <v-list-item-title>{{ vehicle.streetLegal ? 'Yes' : 'No' }}</v-list-item-title>
-                <v-tooltip activator="parent" location="top">Street legal </v-tooltip>
+                <v-tooltip activator="parent" location="top">Street legal</v-tooltip>
               </v-list-item>
               <v-list-item color="primary" variant="plain">
                 <template v-slot:prepend>
                   <v-icon icon="mdi-engine"></v-icon>
                 </template>
                 <v-list-item-title>{{ vehicle.power }} HP</v-list-item-title>
-                <v-tooltip activator="parent" location="top">Power </v-tooltip>
+                <v-tooltip activator="parent" location="top">Power</v-tooltip>
               </v-list-item>
               <v-list-item color="primary" variant="plain">
                 <template v-slot:prepend>
                   <v-icon icon="mdi-car-side"></v-icon>
                 </template>
                 <v-list-item-title>{{ vehicle.type }}</v-list-item-title>
-                <v-tooltip activator="parent" location="top">Vehicle type </v-tooltip>
+                <v-tooltip activator="parent" location="top">Vehicle type</v-tooltip>
               </v-list-item>
             </v-list>
           </v-col>
@@ -65,21 +65,21 @@ const isBike = (vehicle: Vehicle): vehicle is Bike => vehicle.vehicleType === 'b
                   <v-icon icon="mdi-id-card"></v-icon>
                 </template>
                 <v-list-item-title>{{ vehicle.vin }}</v-list-item-title>
-                <v-tooltip activator="parent" location="top">Plate number </v-tooltip>
+                <v-tooltip activator="parent" location="top">Plate number</v-tooltip>
               </v-list-item>
               <v-list-item color="primary" variant="plain">
                 <template v-slot:prepend>
                   <v-icon icon="mdi-counter"></v-icon>
                 </template>
                 <v-list-item-title>{{ vehicle.mileage }} KM</v-list-item-title>
-                <v-tooltip activator="parent" location="top">Mileage </v-tooltip>
+                <v-tooltip activator="parent" location="top">Mileage</v-tooltip>
               </v-list-item>
               <v-list-item color="primary" variant="plain">
                 <template v-slot:prepend>
                   <v-icon icon="mdi-fuel"></v-icon>
                 </template>
                 <v-list-item-title>{{ vehicle.fuel }}</v-list-item-title>
-                <v-tooltip activator="parent" location="top">Fuel type </v-tooltip>
+                <v-tooltip activator="parent" location="top">Fuel type</v-tooltip>
               </v-list-item>
             </v-list>
           </v-col>
@@ -92,28 +92,28 @@ const isBike = (vehicle: Vehicle): vehicle is Bike => vehicle.vehicleType === 'b
                   <v-icon icon="mdi-seat-passenger"></v-icon>
                 </template>
                 <v-list-item-title>{{ vehicle.seats }}</v-list-item-title>
-                <v-tooltip activator="parent" location="top">Number of seats </v-tooltip>
+                <v-tooltip activator="parent" location="top">Number of seats</v-tooltip>
               </v-list-item>
               <v-list-item v-else-if="isBike(vehicle)" color="primary" variant="plain">
                 <template v-slot:prepend>
                   <v-icon icon="mdi-seat-passenger"></v-icon>
                 </template>
                 <v-list-item-title>{{ vehicle.backSeat ? 'Yes' : 'No' }}</v-list-item-title>
-                <v-tooltip activator="parent" location="top">Back seat </v-tooltip>
+                <v-tooltip activator="parent" location="top">Back seat</v-tooltip>
               </v-list-item>
               <v-list-item color="primary" variant="plain">
                 <template v-slot:prepend>
                   <v-icon icon="mdi-calendar"></v-icon>
                 </template>
                 <v-list-item-title>{{ vehicle.year }}</v-list-item-title>
-                <v-tooltip activator="parent" location="top">Year </v-tooltip>
+                <v-tooltip activator="parent" location="top">Year</v-tooltip>
               </v-list-item>
               <v-list-item color="primary" variant="plain">
                 <template v-slot:prepend>
                   <v-icon icon="mdi-cash"></v-icon>
                 </template>
                 <v-list-item-title>{{ vehicle.price }} €</v-list-item-title>
-                <v-tooltip activator="parent" location="top">Price </v-tooltip>
+                <v-tooltip activator="parent" location="top">Price</v-tooltip>
               </v-list-item>
             </v-list>
           </v-col>
@@ -126,6 +126,7 @@ const isBike = (vehicle: Vehicle): vehicle is Bike => vehicle.vehicleType === 'b
 
       <v-card-actions>
         <v-btn
+          :disabled="!vehicle.available"
           variant="tonal"
           color="orange-lighten-2"
           text="Rent now"

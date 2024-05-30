@@ -39,6 +39,7 @@ interface Rent {
   tel: string
   email: string
   type?: string
+  vehicle: Vehicle
   showDetails?: boolean
 }
 

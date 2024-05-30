@@ -4,7 +4,7 @@
   <v-card class="mx-auto" width="1280">
     <v-container>
       <v-row>
-        <v-col md="4" sm="6" xs="12">
+        <v-col md="3" sm="6" xs="12">
           <v-skeleton-loader
             width="250"
             height="200"
@@ -12,7 +12,8 @@
             class="mx-auto"
           ></v-skeleton-loader>
         </v-col>
-        <v-col md="4" sm="6" xs="12" v-for="i in 2" :key="i">
+
+        <v-col md="3" sm="6" xs="12" v-for="i in 3" :key="i">
           <v-skeleton-loader
             width="150"
             min-width="100"
