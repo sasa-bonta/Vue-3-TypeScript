@@ -14,7 +14,7 @@ const isBike = (vehicle: Vehicle): vehicle is Bike => vehicle.vehicleType === 'b
     <v-card class="mx-auto" width="1280">
       <v-container>
         <v-row>
-          <v-col md="3" sm="6" xs="12">
+          <v-col md="3" sm="6">
             <v-img
               width="250"
               height="200"
@@ -23,7 +23,7 @@ const isBike = (vehicle: Vehicle): vehicle is Bike => vehicle.vehicleType === 'b
               class="rounded mx-auto"
             ></v-img>
           </v-col>
-          <v-col md="3" sm="6" xs="12">
+          <v-col md="3" sm="6">
             <v-list>
               <v-list-subheader>Technical information</v-list-subheader>
               <v-list-item v-if="isCar(vehicle)" color="primary" variant="plain">
@@ -57,7 +57,7 @@ const isBike = (vehicle: Vehicle): vehicle is Bike => vehicle.vehicleType === 'b
             </v-list>
           </v-col>
 
-          <v-col md="3" sm="6" xs="12">
+          <v-col md="3" sm="6">
             <v-list>
               <v-list-subheader>General data</v-list-subheader>
               <v-list-item color="primary" variant="plain">
@@ -84,7 +84,7 @@ const isBike = (vehicle: Vehicle): vehicle is Bike => vehicle.vehicleType === 'b
             </v-list>
           </v-col>
 
-          <v-col md="3" sm="6" xs="12">
+          <v-col md="3" sm="6">
             <v-list>
               <v-list-subheader>Additional information</v-list-subheader>
               <v-list-item v-if="isCar(vehicle)" color="primary" variant="plain">

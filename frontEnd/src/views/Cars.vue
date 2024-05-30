@@ -88,6 +88,8 @@ const filteredAndSortedCars = computed(() => {
       </v-col>
     </v-row>
 
+    <v-card width="1280" v-if="!filteredAndSortedCars.length && !loading"></v-card>
+
     <div v-if="!loading">
       <Vehicle v-for="car in filteredAndSortedCars" :key="car.id" :vehicle="car" />
     </div>
