@@ -54,9 +54,9 @@ const filteredAndSortedCars = computed(() => {
     filteredCars = filteredCars.filter((car) => car.available)
   }
 
-  if (sortOrder.value === 'price asc') {
+  if (sortOrder.value === sortOptions[0]) {
     filteredCars.sort((a, b) => a.price - b.price)
-  } else if (sortOrder.value === 'price desc') {
+  } else if (sortOrder.value === sortOptions[1]) {
     filteredCars.sort((a, b) => b.price - a.price)
   }
 
@@ -67,24 +67,24 @@ const filteredAndSortedCars = computed(() => {
 <template>
   <v-container>
     <v-row class="my-6 bg-grey-darken-4">
-      <v-col>
-        <v-text-field v-model="brandModel" label="Brand, model" required></v-text-field>
+      <v-col md="3" sm="6" cols="12">
+        <v-text-field v-model="brandModel" label="Brand, model"></v-text-field>
       </v-col>
 
-      <v-col>
-        <v-text-field v-model="plateNumber" label="Plate number" required></v-text-field>
+      <v-col md="3" sm="6" cols="12">
+        <v-text-field v-model="plateNumber" label="Plate number"></v-text-field>
       </v-col>
 
-      <v-col>
-        <v-select v-model="gearbox" :items="gearboxOptions" label="Gear box" required></v-select>
+      <v-col md="3" sm="6" cols="12">
+        <v-select v-model="gearbox" :items="gearboxOptions" label="Gear box"></v-select>
       </v-col>
 
-      <v-col>
-        <v-select v-model="sortOrder" :items="sortOptions" label="Sort by" required></v-select>
+      <v-col md="3" sm="6" cols="12">
+        <v-select v-model="sortOrder" :items="sortOptions" label="Sort by"></v-select>
       </v-col>
 
-      <v-col>
-        <v-checkbox v-model="showRented" label="Show also not available" required></v-checkbox>
+      <v-col md="3" sm="6" cols="12">
+        <v-checkbox v-model="showRented" label="Show also not available"></v-checkbox>
       </v-col>
     </v-row>
 
