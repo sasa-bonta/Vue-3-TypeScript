@@ -3,7 +3,7 @@ import {useRentsStore} from '@/stores/rents'
 import {storeToRefs} from 'pinia'
 import {computed, onMounted, reactive} from 'vue'
 import Rent from '@/components/Rent.vue'
-import RentLoader from "@/components/RentLoader.vue";
+import RentLoader from '@/components/RentLoader.vue'
 
 const store = useRentsStore()
 const { items, loading, error } = storeToRefs(store)

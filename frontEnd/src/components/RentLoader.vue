@@ -1,5 +1,4 @@
-<script setup lang="ts">
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <v-card class="mx-auto" width="1280">
@@ -7,27 +6,27 @@
       <v-row>
         <v-col md="4" sm="6" xs="12">
           <v-skeleton-loader
-              width="250"
-              height="200 "
-              type="image"
-              class="mx-auto"
+            width="250"
+            height="200"
+            type="image"
+            class="mx-auto"
           ></v-skeleton-loader>
         </v-col>
         <v-col md="4" sm="6" xs="12" v-for="i in 2" :key="i">
           <v-skeleton-loader
-              width="150"
-              min-width="100"
-              max-width="250"
-              height="30"
-              type="list-item"
+            width="150"
+            min-width="100"
+            max-width="250"
+            height="30"
+            type="list-item"
           ></v-skeleton-loader>
           <v-skeleton-loader
-              v-for="i in 3"
-              :key="i"
-              min-width="100"
-              max-width="250"
-              height="57"
-              type="list-item-avatar"
+            v-for="i in 3"
+            :key="i"
+            min-width="100"
+            max-width="250"
+            height="57"
+            type="list-item-avatar"
           ></v-skeleton-loader>
         </v-col>
       </v-row>
