@@ -11,6 +11,8 @@ const typeOptions: string[] = ['Classic', 'Chopper', 'Sport bike', 'Cross']
 
 const form = reactive({ streetLegal: true, backSeat: true, fuel: fuelOptions[0] } as BikeForm)
 
+const requiredRule = [(v: string) => !!v || 'This field is required']
+
 const submitForm = async () => {
   try {
     await createBike(form)
@@ -27,53 +29,53 @@ const submitForm = async () => {
     <v-form>
       <v-row>
         <v-col cols="12" md="6">
-          <v-text-field v-model="form.vin" label="Number plate" required />text-field>
+          <v-text-field v-model="form.vin" :rules="requiredRule" label="Number plate" required />
         </v-col>
         <v-col cols="12" md="6">
-          <v-text-field v-model="form.year" label="Year" type="number" required />text-field>
+          <v-text-field v-model="form.year" :rules="requiredRule" label="Year" type="number" required />
         </v-col>
         <v-col cols="12" md="6">
-          <v-text-field v-model="form.brand" label="Brand" required />text-field>
+          <v-text-field v-model="form.brand" :rules="requiredRule" label="Brand" required />
         </v-col>
         <v-col cols="12" md="6">
-          <v-text-field v-model="form.model" label="Model" required />text-field>
+          <v-text-field v-model="form.model" :rules="requiredRule" label="Model" required />
         </v-col>
         <v-col cols="12" md="6">
-          <v-text-field v-model="form.mileage" label="Mileage" type="number" required />text-field>
+          <v-text-field v-model="form.mileage" :rules="requiredRule" label="Mileage" type="number" required />
         </v-col>
         <v-col cols="12" md="6">
-          <v-text-field v-model="form.engine" label="Engine" required />text-field>
+          <v-text-field v-model="form.engine" :rules="requiredRule" label="Engine" required />
         </v-col>
         <v-col cols="12" md="6">
-          <v-text-field v-model="form.fuel" label="Fuel" required />text-field>
+          <v-text-field v-model="form.fuel" :rules="requiredRule" label="Fuel" required />
         </v-col>
         <v-col cols="12" md="6">
-          <v-text-field v-model="form.power" label="Power" type="number" required />text-field>
+          <v-text-field v-model="form.power" :rules="requiredRule" label="Power" type="number" required />
         </v-col>
         <v-col cols="12" md="6">
-          <v-select v-model="form.type" :items="typeOptions" label="Type" />
+          <v-select v-model="form.type" :items="typeOptions" :rules="requiredRule" label="Type" required />
         </v-col>
         <v-col cols="12" md="6">
-          <v-text-field v-model="form.photo" label="Photo URL" required />text-field>
+          <v-text-field v-model="form.photo" :rules="requiredRule" label="Photo URL" required />
         </v-col>
         <v-col cols="12" md="6">
-          <v-text-field v-model="form.price" label="Price" type="number" required />text-field>
-        </v-col>
-        <v-col cols="12" md="6">
-          <v-switch
-            v-model="form.streetLegal"
-            :label="`Street legal: ${form.streetLegal}`"
-            hide-details
-            inset
-          />switch>
+          <v-text-field v-model="form.price" :rules="requiredRule" label="Price" type="number" required />
         </v-col>
         <v-col cols="12" md="6">
           <v-switch
-            v-model="form.backSeat"
-            :label="`Back seat: ${form.backSeat}`"
-            hide-details
-            inset
-          />switch>
+              v-model="form.streetLegal"
+              :label="`Street legal: ${form.streetLegal}`"
+              hide-details
+              inset
+          />
+        </v-col>
+        <v-col cols="12" md="6">
+          <v-switch
+              v-model="form.backSeat"
+              :label="`Back seat: ${form.backSeat}`"
+              hide-details
+              inset
+          />
         </v-col>
         <v-col cols="12">
           <v-btn @click="submitForm" color="primary"> Submit</v-btn>
