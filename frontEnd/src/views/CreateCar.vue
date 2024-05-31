@@ -2,6 +2,7 @@
 import {reactive} from 'vue'
 import {useRouter} from 'vue-router'
 import {createCar} from '@/api/api'
+import emitter from '@/utils/emitter'
 
 const router = useRouter()
 

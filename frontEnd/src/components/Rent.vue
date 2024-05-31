@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import {reactive} from 'vue'
 import type {BikeRent, CarRent, Rent} from '@/interfaces/api'
-import {endRent} from '@/api/api'
 import {useRentsStore} from '@/stores/rents'
-import mitt from "mitt";
+import emitter from '@/utils/emitter'
+import {endRent} from '@/api/api'
+import {useConfirmStore} from '@/stores/confirm'
 
 const props = defineProps<{ rent: Rent }>()
 const rent: Rent = reactive(props.rent)
@@ -11,13 +12,14 @@ const rent: Rent = reactive(props.rent)
 const isCarRent = (rent: Rent): rent is CarRent => rent.type === 'car'
 const isBikeRent = (rent: Rent): rent is BikeRent => rent.type === 'bike'
 
-const store = useRentsStore()
-const { fetchList } = store
+const rentsStore = useRentsStore()
+const { fetchList } = rentsStore
 
-const emitter = mitt()
+const confirmStore = useConfirmStore()
+const { openConfirm } = confirmStore
 
 const endRentAction = async () => {
-  const isConfirmed = confirm('Are you sure you want to end this rent?')
+  const isConfirmed = await openConfirm('Are you sure you want to end this rent?')
 
   if (!isConfirmed) {
     return
@@ -28,7 +30,7 @@ const endRentAction = async () => {
     await fetchList()
     emitter.emit('notify-success', 'Rent ended')
   } catch (error) {
-    emitter.emit('notify-error', 'Filed to delete rent: ' + error)
+    emitter.emit('notify-error', 'Failed to delete rent: ' + error)
   }
 }
 </script>

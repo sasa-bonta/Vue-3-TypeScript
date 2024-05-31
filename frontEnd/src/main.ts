@@ -11,9 +11,6 @@ import '@mdi/font/css/materialdesignicons.css'
 import {createVuetify} from 'vuetify'
 import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
-import mitt from 'mitt'
-
-const emitter = mitt()
 
 const vuetify = createVuetify({
   display: {
@@ -28,7 +25,6 @@ const vuetify = createVuetify({
 
 const app = createApp(App)
 
-app.config.globalProperties.emitter = emitter
 app.use(createPinia())
 app.use(router)
 app.use(vuetify)

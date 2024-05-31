@@ -1,7 +1,7 @@
 import {defineStore} from 'pinia'
 import {ref, type Ref} from 'vue'
 import type {BikeRent, CarRent} from '@/interfaces/api'
-import {sleep} from '@/services'
+import {sleep} from '@/utils/sleep'
 import {fetchBikeRentList, fetchCarRentList} from '@/api/api'
 
 export const useRentsStore = defineStore('rents', () => {
@@ -13,7 +13,7 @@ export const useRentsStore = defineStore('rents', () => {
     loading.value = true
     error.value = null
     try {
-      await sleep(1000)
+      await sleep()
       const [carRents, bikeRents] = await Promise.all([fetchCarRentList(), fetchBikeRentList()])
 
       if (!Array.isArray(carRents.data) || !Array.isArray(bikeRents.data)) {

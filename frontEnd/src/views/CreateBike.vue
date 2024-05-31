@@ -2,10 +2,9 @@
 import {useRouter} from 'vue-router'
 import {reactive} from 'vue'
 import {createBike} from '@/api/api'
-import mitt from 'mitt'
+import emitter from '@/utils/emitter'
 
 const router = useRouter()
-const emitter = mitt()
 
 const fuelOptions: string[] = ['Petrol', 'Electric']
 const typeOptions: string[] = ['Classic', 'Chopper', 'Sport bike', 'Cross']
@@ -14,7 +13,6 @@ const form = reactive({ streetLegal: true, backSeat: true, fuel: fuelOptions[0] 
 
 const submitForm = async () => {
   try {
-    console.log(form)
     await createBike(form)
     emitter.emit('notify-success', 'New bike created')
     await router.push({ name: 'bikes' })

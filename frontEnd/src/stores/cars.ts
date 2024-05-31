@@ -1,8 +1,8 @@
-import { defineStore } from 'pinia'
-import { type Ref, ref } from 'vue'
-import type { Car } from '@/interfaces/api'
-import { fetchCarList } from '@/api/api'
-import { sleep } from '@/services'
+import {defineStore} from 'pinia'
+import {type Ref, ref} from 'vue'
+import type {Car} from '@/interfaces/api'
+import {fetchCarList} from '@/api/api'
+import {sleep} from '@/utils/sleep'
 
 export const useCarsStore = defineStore('cars', () => {
   const items: Ref<Array<Car>> = ref([])
@@ -13,7 +13,7 @@ export const useCarsStore = defineStore('cars', () => {
     loading.value = true
     error.value = null
     try {
-      await sleep(1000)
+      await sleep()
       const response = await fetchCarList()
       items.value = response.data
     } catch (err: any) {

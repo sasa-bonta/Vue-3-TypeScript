@@ -3,7 +3,7 @@ import {useRoute, useRouter} from 'vue-router'
 import {computed, reactive} from 'vue'
 import CreateRentForm from '@/components/CreateRentForm.vue'
 import {createBikeRent, createCarRent} from '@/api/api'
-import mitt from 'mitt'
+import emitter from '@/utils/emitter'
 
 const route = useRoute()
 const vehicleType = computed(() => route.params.vehicleType)
@@ -22,7 +22,6 @@ if (vehicleType.value === 'car') {
 }
 
 const router = useRouter()
-const emitter = mitt()
 
 const submitForm = async () => {
   try {

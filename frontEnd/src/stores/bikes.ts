@@ -1,7 +1,7 @@
-import { defineStore } from 'pinia'
-import { fetchBikeList } from '@/api/api'
-import type { Bike } from '@/interfaces/api'
-import { sleep } from '@/services'
+import {defineStore} from 'pinia'
+import {fetchBikeList} from '@/api/api'
+import type {Bike} from '@/interfaces/api'
+import {sleep} from '@/utils/sleep'
 
 interface State {
   items: Bike[]
@@ -20,7 +20,7 @@ export const useBikesStore = defineStore('bike', {
       this.loading = true
       this.error = null
       try {
-        await sleep(1000)
+        await sleep()
         const response = await fetchBikeList()
         this.items = response.data
       } catch (err: any) {
