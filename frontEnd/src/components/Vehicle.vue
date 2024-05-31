@@ -75,7 +75,7 @@ const deleteVehicle = async () => {
                 <v-tooltip activator="parent" location="top">Power</v-tooltip>
               </v-list-item>
               <v-list-item color="primary" variant="plain">
-                <template v-slot:prepend> <v-icon icon="mdi-car-side" />icon> </template>
+                <template v-slot:prepend> <v-icon icon="mdi-car-side" /> </template>
                 <v-list-item-title>{{ vehicle.type }}</v-list-item-title>
                 <v-tooltip activator="parent" location="top">Vehicle type</v-tooltip>
               </v-list-item>
@@ -86,17 +86,17 @@ const deleteVehicle = async () => {
             <v-list>
               <v-list-subheader>General data</v-list-subheader>
               <v-list-item color="primary" variant="plain">
-                <template v-slot:prepend> <v-icon icon="mdi-id-card" />icon> </template>
+                <template v-slot:prepend> <v-icon icon="mdi-id-card" /> </template>
                 <v-list-item-title>{{ vehicle.vin }}</v-list-item-title>
                 <v-tooltip activator="parent" location="top">Number plate</v-tooltip>
               </v-list-item>
               <v-list-item color="primary" variant="plain">
-                <template v-slot:prepend> <v-icon icon="mdi-counter" />icon> </template>
+                <template v-slot:prepend> <v-icon icon="mdi-counter" /> </template>
                 <v-list-item-title>{{ vehicle.mileage }} KM</v-list-item-title>
                 <v-tooltip activator="parent" location="top">Mileage</v-tooltip>
               </v-list-item>
               <v-list-item color="primary" variant="plain">
-                <template v-slot:prepend> <v-icon icon="mdi-fuel" />icon> </template>
+                <template v-slot:prepend> <v-icon icon="mdi-fuel" /> </template>
                 <v-list-item-title>{{ vehicle.fuel }}</v-list-item-title>
                 <v-tooltip activator="parent" location="top">Fuel type</v-tooltip>
               </v-list-item>
@@ -107,22 +107,22 @@ const deleteVehicle = async () => {
             <v-list>
               <v-list-subheader>Additional information</v-list-subheader>
               <v-list-item v-if="isCar(vehicle)" color="primary" variant="plain">
-                <template v-slot:prepend> <v-icon icon="mdi-seat-passenger" />icon> </template>
+                <template v-slot:prepend> <v-icon icon="mdi-seat-passenger" /> </template>
                 <v-list-item-title>{{ vehicle.seats }}</v-list-item-title>
                 <v-tooltip activator="parent" location="top">Number of seats</v-tooltip>
               </v-list-item>
               <v-list-item v-else-if="isBike(vehicle)" color="primary" variant="plain">
-                <template v-slot:prepend> <v-icon icon="mdi-seat-passenger" />icon> </template>
+                <template v-slot:prepend> <v-icon icon="mdi-seat-passenger" /> </template>
                 <v-list-item-title>{{ vehicle.backSeat ? 'Yes' : 'No' }}</v-list-item-title>
                 <v-tooltip activator="parent" location="top">Back seat</v-tooltip>
               </v-list-item>
               <v-list-item color="primary" variant="plain">
-                <template v-slot:prepend> <v-icon icon="mdi-calendar" />icon> </template>
+                <template v-slot:prepend> <v-icon icon="mdi-calendar" /> </template>
                 <v-list-item-title>{{ vehicle.year }}</v-list-item-title>
                 <v-tooltip activator="parent" location="top">Year</v-tooltip>
               </v-list-item>
               <v-list-item color="primary" variant="plain">
-                <template v-slot:prepend> <v-icon icon="mdi-cash" />icon> </template>
+                <template v-slot:prepend> <v-icon icon="mdi-cash" /> </template>
                 <v-list-item-title>{{ vehicle.price }} €</v-list-item-title>
                 <v-tooltip activator="parent" location="top">Price</v-tooltip>
               </v-list-item>
@@ -161,7 +161,7 @@ const deleteVehicle = async () => {
         <v-btn
           :icon="vehicle.showDetails ? 'mdi-chevron-up' : 'mdi-chevron-down'"
           @click="vehicle.showDetails = !vehicle.showDetails"
-        />btn>
+        />
       </v-card-actions>
 
       <v-expand-transition>

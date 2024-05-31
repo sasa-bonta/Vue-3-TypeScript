@@ -167,12 +167,12 @@ const endRentAction = async () => {
           :disabled="!!rent.finishDate"
         />
 
-        <v-spacer />spacer>
+        <v-spacer />
 
         <v-btn
           :icon="rent.showDetails ? 'mdi-chevron-up' : 'mdi-chevron-down'"
           @click="rent.showDetails = !rent.showDetails"
-        />btn>
+        />
       </v-card-actions>
 
       <v-expand-transition>
