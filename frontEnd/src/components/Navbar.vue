@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import logo from '@/assets/car-rent-icon.svg'
-import { useDisplay } from 'vuetify'
-import { ref, type Ref } from 'vue'
+import {useDisplay} from 'vuetify'
+import {ref, type Ref} from 'vue'
 
 const { xs, smAndUp, mdAndUp } = useDisplay()
 
@@ -68,7 +68,7 @@ const navigationRoutes: Ref<Array<{ title: string; icon: string; name: string }>
         @click="$router.push({ name: route.name })"
       >
         <template v-slot:prepend>
-          <v-icon :icon="route.icon"></v-icon>
+          <v-icon :icon="route.icon" />
         </template>
       </v-list-item>
     </v-list>

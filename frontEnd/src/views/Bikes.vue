@@ -67,27 +67,27 @@ const filteredAndSortedBikes = computed(() => {
   <v-container>
     <v-row class="my-6 bg-grey-darken-4">
       <v-col md="3" sm="6" xs="12">
-        <v-text-field v-model="brandModel" label="Brand, model"></v-text-field>
+        <v-text-field v-model="brandModel" label="Brand, model" />text-field>
       </v-col>
 
       <v-col md="3" sm="6" cols="12">
-        <v-text-field v-model="plateNumber" label="Number plate"></v-text-field>
+        <v-text-field v-model="plateNumber" label="Number plate" />text-field>
       </v-col>
 
       <v-col md="3" sm="6" cols="12">
-        <v-select v-model="backSeat" :items="backSeatOptions" label="Back seat"></v-select>
+        <v-select v-model="backSeat" :items="backSeatOptions" label="Back seat" />select>
       </v-col>
 
       <v-col md="3" sm="6" cols="12">
-        <v-select v-model="sortOrder" :items="sortOptions" label="Sort by"></v-select>
+        <v-select v-model="sortOrder" :items="sortOptions" label="Sort by" />select>
       </v-col>
 
       <v-col md="3" sm="6" cols="12">
-        <v-checkbox v-model="showRented" label="Show also not available"></v-checkbox>
+        <v-checkbox v-model="showRented" label="Show also not available" />checkbox>
       </v-col>
     </v-row>
 
-    <v-card width="1280" v-if="!filteredAndSortedBikes.length && !loading"></v-card>
+    <v-card width="1280" v-if="!filteredAndSortedBikes.length && !loading" />card>
 
     <div v-if="!loading">
       <Vehicle v-for="bike in filteredAndSortedBikes" :key="bike.id" :vehicle="bike" />

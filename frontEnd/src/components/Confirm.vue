@@ -12,7 +12,7 @@ const { closeConfirm } = store
     <v-dialog v-model="isOpen" max-width="400" persistent>
       <v-card :text="message" title="Confirm your action">
         <template v-slot:actions>
-          <v-spacer></v-spacer>
+          <v-spacer />
 
           <v-btn @click="closeConfirm(false)"> Cancel</v-btn>
 

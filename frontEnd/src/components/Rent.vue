@@ -48,7 +48,7 @@ const endRentAction = async () => {
               :src="rent.car.photo"
               cover
               class="rounded mx-auto"
-            ></v-img>
+            />
             <v-img
               v-else-if="isBikeRent(rent)"
               width="250"
@@ -56,7 +56,7 @@ const endRentAction = async () => {
               :src="rent.bike.photo"
               cover
               class="rounded mx-auto"
-            ></v-img>
+            />
           </v-col>
 
           <v-col md="3" sm="6" xs="12">
@@ -65,21 +65,21 @@ const endRentAction = async () => {
 
               <v-list-item color="primary" variant="plain">
                 <template v-slot:prepend>
-                  <v-icon icon="mdi-timer-play-outline"></v-icon>
+                  <v-icon icon="mdi-timer-play-outline" />
                 </template>
                 <v-list-item-title>{{ rent.startDate }}</v-list-item-title>
                 <v-tooltip activator="parent" location="top">Start date</v-tooltip>
               </v-list-item>
               <v-list-item color="primary" variant="plain">
                 <template v-slot:prepend>
-                  <v-icon icon="mdi-timer-cancel-outline"></v-icon>
+                  <v-icon icon="mdi-timer-cancel-outline" />
                 </template>
                 <v-list-item-title>{{ rent.finishDate ?? '-' }}</v-list-item-title>
                 <v-tooltip activator="parent" location="top">End date</v-tooltip>
               </v-list-item>
               <v-list-item color="primary" variant="plain">
                 <template v-slot:prepend>
-                  <v-icon icon="mdi-cash"></v-icon>
+                  <v-icon icon="mdi-cash" />
                 </template>
                 <v-list-item-title>{{ rent.pricePerDay }} €</v-list-item-title>
                 <v-tooltip activator="parent" location="top">Price per day</v-tooltip>
@@ -92,21 +92,21 @@ const endRentAction = async () => {
               <v-list-subheader>Vehicle information</v-list-subheader>
               <v-list-item color="primary" variant="plain">
                 <template v-slot:prepend>
-                  <v-icon icon="mdi-crown-circle"></v-icon>
+                  <v-icon icon="mdi-crown-circle" />
                 </template>
                 <v-list-item-title>{{ rent.vehicle.brand }}</v-list-item-title>
                 <v-tooltip activator="parent" location="top">Brand</v-tooltip>
               </v-list-item>
               <v-list-item color="primary" variant="plain">
                 <template v-slot:prepend>
-                  <v-icon icon="mdi-text-recognition"></v-icon>
+                  <v-icon icon="mdi-text-recognition" />
                 </template>
                 <v-list-item-title>{{ rent.vehicle.model }}</v-list-item-title>
                 <v-tooltip activator="parent" location="top">Model</v-tooltip>
               </v-list-item>
               <v-list-item color="primary" variant="plain">
                 <template v-slot:prepend>
-                  <v-icon icon="mdi-cake"></v-icon>
+                  <v-icon icon="mdi-cake" />
                 </template>
                 <v-list-item-title>{{ rent.vehicle.year }}</v-list-item-title>
                 <v-tooltip activator="parent" location="top">Year</v-tooltip>
@@ -119,7 +119,7 @@ const endRentAction = async () => {
               <v-list-subheader>Vehicle information</v-list-subheader>
               <v-list-item color="primary" variant="plain">
                 <template v-slot:prepend>
-                  <v-icon icon="mdi-id-card"></v-icon>
+                  <v-icon icon="mdi-id-card" />
                 </template>
                 <v-list-item-title v-if="isCarRent(rent)">{{ rent.car.vin }}</v-list-item-title>
                 <v-list-item-title v-else-if="isBikeRent(rent)"
@@ -129,7 +129,7 @@ const endRentAction = async () => {
               </v-list-item>
               <v-list-item color="primary" variant="plain">
                 <template v-slot:prepend>
-                  <v-icon icon="mdi-counter"></v-icon>
+                  <v-icon icon="mdi-counter" />
                 </template>
                 <v-list-item-title v-if="isCarRent(rent)"
                   >{{ rent.car.mileage }} KM
@@ -141,7 +141,7 @@ const endRentAction = async () => {
               </v-list-item>
               <v-list-item color="primary" variant="plain">
                 <template v-slot:prepend>
-                  <v-icon icon="mdi-fuel"></v-icon>
+                  <v-icon icon="mdi-fuel" />
                 </template>
                 <v-list-item-title v-if="isCarRent(rent)">{{ rent.car.fuel }}</v-list-item-title>
                 <v-list-item-title v-else-if="isBikeRent(rent)"
@@ -167,17 +167,17 @@ const endRentAction = async () => {
           :disabled="!!rent.finishDate"
         />
 
-        <v-spacer></v-spacer>
+        <v-spacer />spacer>
 
         <v-btn
           :icon="rent.showDetails ? 'mdi-chevron-up' : 'mdi-chevron-down'"
           @click="rent.showDetails = !rent.showDetails"
-        ></v-btn>
+        />btn>
       </v-card-actions>
 
       <v-expand-transition>
         <div v-show="rent.showDetails">
-          <v-divider></v-divider>
+          <v-divider />divider>
 
           <v-card-text>
             <pre>{{ rent }}</pre>
