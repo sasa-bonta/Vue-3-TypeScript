@@ -1,0 +1,27 @@
+services:
+  backend:
+    build:
+      context: .  # Set context to the parent folder
+      dockerfile: Dockerfile  # Use the Dockerfile in the parent folder
+    ports:
+      - "8080:8080"  # Map port 8080
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/vehicle_rent
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: pass
+      SPRING_APPLICATION_NAME: fancy_project
+    depends_on:
+      - mysql
+
+  mysql:
+    image: mysql:8.0
+    ports:
+      - "3306:3306"  # Map MySQL port
+    environment:
+      MYSQL_ROOT_PASSWORD: pass  # Set MySQL root password
+      MYSQL_DATABASE: vehicle_rent  # Create initial database
+    volumes:
+      - mysql-data:/var/lib/mysql  # Persist MySQL data
+
+volumes:
+  mysql-data:
